@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.raidify.mobi.mycouturier.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_gallery"
+            app:destination="@id/nav_gallery" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_slideshow"
+            app:destination="@id/nav_slideshow" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_measurement"
+            app:destination="@id/nav_measurement" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.raidify.mobi.mycouturier.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.raidify.mobi.mycouturier.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_measurement"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.measurementTypeFragment"
+        android:label="measurement_type__fragment"
+        tools:layout="@layout/measurement_type__fragment" >
+        <action
+            android:id="@+id/action_nav_measurement_to_nav_fullBodyFemaleFragment"
+            app:destination="@id/nav_fullBodyFemaleFragment" />
+        <action
+            android:id="@+id/action_nav_measurement_to_nav_fullBodyMaleFragment"
+            app:destination="@id/nav_fullBodyMaleFragment" />
+        <action
+            android:id="@+id/action_nav_measurement_to_upperBodyFemaleFragment"
+            app:destination="@id/upperBodyFemaleFragment" />
+        <action
+            android:id="@+id/action_nav_measurement_to_upperBodyMaleFragment"
+            app:destination="@id/upperBodyMaleFragment" />
+        <action
+            android:id="@+id/action_nav_measurement_to_lowerBodyMaleFragment"
+            app:destination="@id/lowerBodyMaleFragment" />
+        <action
+            android:id="@+id/action_nav_measurement_to_lowerBodyFemaleFragment"
+            app:destination="@id/lowerBodyFemaleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_fullBodyFemaleFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.FullBodyFemaleFragment"
+        android:label="full_body_female_fragment"
+        tools:layout="@layout/full_body_female_fragment" />
+    <fragment
+        android:id="@+id/nav_fullBodyMaleFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.FullBodyMaleFragment"
+        android:label="full_body_male_fragment"
+        tools:layout="@layout/full_body_male_fragment" />
+    <fragment
+        android:id="@+id/upperBodyFemaleFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.UpperBodyFemaleFragment"
+        android:label="upper_body_female_fragment"
+        tools:layout="@layout/upper_body_female_fragment" />
+    <fragment
+        android:id="@+id/upperBodyMaleFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.UpperBodyMaleFragment"
+        android:label="upper_body_male_fragment"
+        tools:layout="@layout/upper_body_male_fragment" />
+    <fragment
+        android:id="@+id/lowerBodyFemaleFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.LowerBodyFemaleFragment"
+        android:label="lower_body_female_fragment"
+        tools:layout="@layout/lower_body_female_fragment" />
+    <fragment
+        android:id="@+id/lowerBodyMaleFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.LowerBodyMaleFragment"
+        android:label="lower_body_male_fragment"
+        tools:layout="@layout/lower_body_male_fragment" />
+</navigation>
