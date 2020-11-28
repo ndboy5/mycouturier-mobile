@@ -22,4 +22,8 @@
     <string name="shoulderLen">Shoulder</string>
     <string name="neck">Neck</string>
     <string name="waist">Waist</string>
+    <string name="bodyPartText">shoulder</string>
+    <string name="centimeter_text">cm</string>
+    <string name="inch_text">inch</string>
+    <string name="mm_text">mm</string>
 </resources>

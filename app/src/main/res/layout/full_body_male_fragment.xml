@@ -1,56 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.measurement.FullBodyMaleFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_marginTop="7dp"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="381dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="386dp"
+        android:layout_height="294dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="176dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/bodyToggleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/neckLen"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/upperBodyBtn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="126dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/lowerBodyBtn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="135dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/neck"
-                app:endIconMode="custom"
-                >
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:text="@string/lowerBodyChip" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/shoulderLen"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/othersBtn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="124dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/shoulderLen">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:text="@string/inch_text" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/waistLen"
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="355dp"
+        android:layout_height="149dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/measureLengthTextView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="216dp"
+            android:layout_height="130dp"
+            android:hint="@string/bodyPartText">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/waist">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="116dp"
+                android:inputType="numberDecimal"
+                android:textSize="40sp" />
 
-        </LinearLayout>
-    </ScrollView>
-</FrameLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/unitsToggleButton"
+            android:layout_width="59dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/cm_Btn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/centimeter_text" />
+
+            <Button
+                android:id="@+id/mm_Btn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mm_text" />
+
+            <Button
+                android:id="@+id/inch_Btn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inch_text" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
