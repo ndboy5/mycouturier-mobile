@@ -43,18 +43,6 @@
         <action
             android:id="@+id/action_nav_measurement_to_nav_fullBodyMaleFragment"
             app:destination="@id/nav_fullBodyMaleFragment" />
-        <action
-            android:id="@+id/action_nav_measurement_to_upperBodyFemaleFragment"
-            app:destination="@id/upperBodyFemaleFragment" />
-        <action
-            android:id="@+id/action_nav_measurement_to_upperBodyMaleFragment"
-            app:destination="@id/upperBodyMaleFragment" />
-        <action
-            android:id="@+id/action_nav_measurement_to_lowerBodyMaleFragment"
-            app:destination="@id/lowerBodyMaleFragment" />
-        <action
-            android:id="@+id/action_nav_measurement_to_lowerBodyFemaleFragment"
-            app:destination="@id/lowerBodyFemaleFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_fullBodyFemaleFragment"
@@ -66,24 +54,4 @@
         android:name="com.raidify.mobi.mycouturier.ui.measurement.FullBodyMaleFragment"
         android:label="full_body_male_fragment"
         tools:layout="@layout/full_body_male_fragment" />
-    <fragment
-        android:id="@+id/upperBodyFemaleFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.UpperBodyFemaleFragment"
-        android:label="upper_body_female_fragment"
-        tools:layout="@layout/upper_body_female_fragment" />
-    <fragment
-        android:id="@+id/upperBodyMaleFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.UpperBodyMaleFragment"
-        android:label="upper_body_male_fragment"
-        tools:layout="@layout/upper_body_male_fragment" />
-    <fragment
-        android:id="@+id/lowerBodyFemaleFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.LowerBodyFemaleFragment"
-        android:label="lower_body_female_fragment"
-        tools:layout="@layout/lower_body_female_fragment" />
-    <fragment
-        android:id="@+id/lowerBodyMaleFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.LowerBodyMaleFragment"
-        android:label="lower_body_male_fragment"
-        tools:layout="@layout/lower_body_male_fragment" />
 </navigation>
