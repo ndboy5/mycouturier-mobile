@@ -15,9 +15,9 @@
     <string name="ordersBtn">Make Orders</string>
     <string name="maleBtn">Male</string>
     <string name="femaleBtn">Female</string>
-    <string name="fullBodyChip">Full Clothing</string>
-    <string name="upperBodyChip">Tops</string>
-    <string name="lowerBodyChip">Lower Body wears</string>
+    <string name="fullBody">Full Clothing</string>
+    <string name="upperBody">Tops</string>
+    <string name="lowerBody">Lower Body wears</string>
     <string name="nextBtn">Next</string>
     <string name="shoulderLen">Shoulder</string>
     <string name="neck">Neck</string>

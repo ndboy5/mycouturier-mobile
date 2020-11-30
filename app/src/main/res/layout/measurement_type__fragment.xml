@@ -8,15 +8,57 @@
     tools:context=".ui.measurement.measurementTypeFragment">
 
     <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/unitsOfMeasurement"
+        android:layout_width="334dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="36dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggleButton"
+        app:selectionRequired="true"
+        android:gravity="center_horizontal"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/cmUnit"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/centimeter_text" />
+
+        <Button
+            android:id="@+id/mmUnit"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/mm_text" />
+
+        <Button
+            android:id="@+id/inchUnit"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/inch_text" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:barrierDirection="top" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/toggleButton"
         android:layout_width="195dp"
         android:layout_height="48dp"
-        android:layout_marginTop="200dp"
-        app:singleSelection="true"
-        app:selectionRequired="true"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:selectionRequired="true"
+        app:singleSelection="true">
 
         <Button
             android:id="@+id/maleBtn"
@@ -39,48 +81,12 @@
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
 
-    <com.google.android.material.chip.ChipGroup
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/chipGroup"
-        android:layout_marginTop="124dp"
-        app:singleLine="true"
-        app:singleSelection="true"
-        app:selectionRequired="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton">
-
-        <com.google.android.material.chip.Chip
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:id="@+id/chipFullBD"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/fullBodyChip" />
-
-        <com.google.android.material.chip.Chip
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:id="@+id/chipUpperBD"
-            android:layout_height="wrap_content"
-            android:text="@string/upperBodyChip" />
-
-        <com.google.android.material.chip.Chip
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:id="@+id/chipLowerBD"
-            android:layout_height="wrap_content"
-            android:text="@string/lowerBodyChip" />
-
-    </com.google.android.material.chip.ChipGroup>
-
     <Button
         android:id="@+id/goToMeasurementEntryBtn"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="552dp"
+        android:layout_marginTop="400dp"
         android:text="@string/nextBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -7,124 +7,153 @@
     android:layout_height="match_parent"
     tools:context=".ui.measurement.FullBodyMaleFragment">
 
-    <LinearLayout
-        android:layout_width="381dp"
-        android:layout_height="153dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="480dp"
-        android:layout_marginEnd="6dp"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/measureLengthTextView"
+        app:selectionRequired="true"
+        app:singleLine="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFullBD"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/fullBody" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipUpperBD"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upperBody" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipLowerBD"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lowerBody" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/measureLengthTextView"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="216dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="12dp"
+        android:hint="@string/bodyPartText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="386dp"
-        android:layout_height="294dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/bodyToggleButton"
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:selectionRequired="true"
-            app:singleSelection="true">
+            android:layout_height="116dp"
+            android:inputType="numberDecimal"
+            android:textSize="40sp" />
 
-            <Button
-                android:id="@+id/upperBodyBtn"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="126dp"
-                android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/lowerBodyBtn"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="135dp"
-                android:layout_height="wrap_content"
-                android:text="@string/lowerBodyChip" />
-
-            <Button
-                android:id="@+id/othersBtn"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="124dp"
-                android:layout_height="wrap_content"
-                android:text="@string/inch_text" />
-
-        </com.google.android.material.button.MaterialButtonToggleGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="355dp"
-        android:layout_height="149dp"
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="225dp"
         android:layout_marginEnd="6dp"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/measureLengthTextView"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="216dp"
-            android:layout_height="130dp"
-            android:hint="@string/bodyPartText">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="116dp"
-                android:inputType="numberDecimal"
-                android:textSize="40sp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/unitsToggleButton"
-            android:layout_width="59dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:selectionRequired="true"
-            app:singleSelection="true">
-
-            <Button
-                android:id="@+id/cm_Btn"
-                style="?attr/materialButtonOutlinedStyle"
+            <ImageButton
+                android:id="@+id/imageButton9"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/centimeter_text" />
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
 
-            <Button
-                android:id="@+id/mm_Btn"
-                style="?attr/materialButtonOutlinedStyle"
+            <ImageButton
+                android:id="@+id/imageButton8"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mm_text" />
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
 
-            <Button
-                android:id="@+id/inch_Btn"
-                style="?attr/materialButtonOutlinedStyle"
+            <ImageButton
+                android:id="@+id/imageButton6"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/inch_text" />
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
 
-        </com.google.android.material.button.MaterialButtonToggleGroup>
+        </TableRow>
 
-    </LinearLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+
+            <ImageButton
+                android:id="@+id/imageButton11"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+
+            <ImageButton
+                android:id="@+id/imageButton12"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton13"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+
+            <ImageButton
+                android:id="@+id/imageButton14"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+
+            <ImageButton
+                android:id="@+id/imageButton15"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+        </TableRow>
+
+    </TableLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

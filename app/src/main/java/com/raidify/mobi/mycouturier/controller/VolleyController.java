@@ -12,15 +12,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-public class AppController extends Application {
-    private final static String TAG = AppController.class.getSimpleName();
-    private static AppController instance;
+public class VolleyController extends Application {
+    private final static String TAG = VolleyController.class.getSimpleName();
+    private static VolleyController instance;
     private RequestQueue requestQueue;
 
 
-    public static synchronized AppController getInstance() {
+    public static synchronized VolleyController getInstance() {
 //        if (instance == null) {
-//            instance = new AppController(context);
+//            instance = new VolleyController(context);
 //        }
         return instance;
     }
