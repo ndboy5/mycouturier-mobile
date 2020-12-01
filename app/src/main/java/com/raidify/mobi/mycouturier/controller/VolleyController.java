@@ -4,6 +4,7 @@ package com.raidify.mobi.mycouturier.controller;
     It is a singleton class built in line with the recommendations of the Android team
     for singleton Volley Class and Dependency Injection
     see: https://developer.android.com/training/volley/requestqueue and https://developer.android.com/training/dependency-injection/manual
+    //TODO: modify codee to use this class rather the APIServerSingleton
  */
 import android.app.Application;
 import android.text.TextUtils;

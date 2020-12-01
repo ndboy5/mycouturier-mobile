@@ -15,9 +15,9 @@
     <string name="ordersBtn">Make Orders</string>
     <string name="maleBtn">Male</string>
     <string name="femaleBtn">Female</string>
-    <string name="fullBody">Full Clothing</string>
-    <string name="upperBody">Tops</string>
-    <string name="lowerBody">Lower Body wears</string>
+    <string name="upperBody">Upper body</string>
+    <string name="midBody">Mid Section</string>
+    <string name="lowerBody">Lower Body</string>
     <string name="nextBtn">Next</string>
     <string name="shoulderLen">Shoulder</string>
     <string name="neck">Neck</string>
@@ -26,4 +26,5 @@
     <string name="centimeter_text">cm</string>
     <string name="inch_text">inch</string>
     <string name="mm_text">mm</string>
+    <string name="error_empty_string">Please enter a valid size</string>
 </resources>

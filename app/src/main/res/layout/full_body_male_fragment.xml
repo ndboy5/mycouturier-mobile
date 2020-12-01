@@ -11,11 +11,11 @@
         android:id="@+id/chipGroup"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/measureLengthTextView"
+        app:layout_constraintTop_toBottomOf="@+id/measureLengthTextLayout"
         app:selectionRequired="true"
         app:singleLine="true"
         app:singleSelection="true">
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/fullBody" />
+            android:text="@string/upperBody" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipUpperBD"
@@ -45,10 +45,10 @@
     </com.google.android.material.chip.ChipGroup>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/measureLengthTextView"
+        android:id="@+id/measureLengthTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="216dp"
-        android:layout_height="130dp"
+        android:layout_width="219dp"
+        android:layout_height="145dp"
         android:layout_marginTop="12dp"
         android:hint="@string/bodyPartText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +56,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/measureLengthTextView"
             android:layout_width="match_parent"
             android:layout_height="116dp"
             android:inputType="numberDecimal"
@@ -79,7 +80,60 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/imageButton9"
+                android:id="@+id/imageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/backmeasure" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton7"
                 android:layout_width="wrap_content"
                 android:layout_height="95dp"
                 android:layout_margin="8dp"
@@ -93,60 +147,7 @@
                 android:src="@drawable/backmeasure" />
 
             <ImageButton
-                android:id="@+id/imageButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="95dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/backmeasure" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/imageButton10"
-                android:layout_width="wrap_content"
-                android:layout_height="95dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/backmeasure" />
-
-            <ImageButton
-                android:id="@+id/imageButton11"
-                android:layout_width="wrap_content"
-                android:layout_height="95dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/backmeasure" />
-
-            <ImageButton
-                android:id="@+id/imageButton12"
-                android:layout_width="wrap_content"
-                android:layout_height="95dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/backmeasure" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/imageButton13"
-                android:layout_width="wrap_content"
-                android:layout_height="95dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/backmeasure" />
-
-            <ImageButton
-                android:id="@+id/imageButton14"
-                android:layout_width="wrap_content"
-                android:layout_height="95dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/backmeasure" />
-
-            <ImageButton
-                android:id="@+id/imageButton15"
+                android:id="@+id/imageButton9"
                 android:layout_width="wrap_content"
                 android:layout_height="95dp"
                 android:layout_margin="8dp"
