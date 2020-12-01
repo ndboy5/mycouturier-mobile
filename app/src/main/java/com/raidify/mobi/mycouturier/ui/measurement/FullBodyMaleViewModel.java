@@ -1,5 +1,7 @@
 package com.raidify.mobi.mycouturier.ui.measurement;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -12,7 +14,10 @@ public class FullBodyMaleViewModel extends ViewModel {
     private String measureText = "0.0";
     private MutableLiveData<Float> currValue = new MutableLiveData<>();
 
-    public void setCurrValue(String value, int bodyPart){
+    public void updateCurrValue(String value, int imageButtonId){
+
+        Log.i("NDBOY", "you just clicked the button " + imageButtonId + " with value " + value );
+
         this.measureText = value;
         currValue.setValue((Float.valueOf(measureText)));
     }

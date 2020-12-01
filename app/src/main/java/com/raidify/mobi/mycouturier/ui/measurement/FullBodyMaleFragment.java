@@ -24,6 +24,14 @@ public class FullBodyMaleFragment extends Fragment implements View.OnClickListen
     private FullBodyMaleViewModel mViewModel;
     private TextInputLayout measureTextLayout;
     private ImageButton imageButton1;
+    private ImageButton imageButton2;
+    private ImageButton imageButton3;
+    private ImageButton imageButton4;
+    private ImageButton imageButton5;
+    private ImageButton imageButton6;
+    private ImageButton imageButton7;
+    private ImageButton imageButton8;
+    private ImageButton imageButton9;
 
     public static FullBodyMaleFragment newInstance() {
         return new FullBodyMaleFragment();
@@ -44,6 +52,14 @@ public class FullBodyMaleFragment extends Fragment implements View.OnClickListen
 
         //Get the image buttons
         imageButton1 = getView().findViewById(R.id.imageButton1);
+        imageButton2 = getView().findViewById(R.id.imageButton2);
+        imageButton3 = getView().findViewById(R.id.imageButton3);
+        imageButton4 = getView().findViewById(R.id.imageButton4);
+        imageButton5 = getView().findViewById(R.id.imageButton5);
+        imageButton6 = getView().findViewById(R.id.imageButton6);
+        imageButton7 = getView().findViewById(R.id.imageButton7);
+        imageButton8 = getView().findViewById(R.id.imageButton8);
+        imageButton9 = getView().findViewById(R.id.imageButton9);
 
         //Configure LiveData observer
         final Observer<Float> measureTextObserver = new Observer<Float>() {
@@ -57,6 +73,14 @@ public class FullBodyMaleFragment extends Fragment implements View.OnClickListen
 
         // assign onClick listeners to image Buttons
         imageButton1.setOnClickListener(this);
+        imageButton2.setOnClickListener(this);
+        imageButton3.setOnClickListener(this);
+        imageButton4.setOnClickListener(this);
+        imageButton5.setOnClickListener(this);
+        imageButton6.setOnClickListener(this);
+        imageButton7.setOnClickListener(this);
+        imageButton8.setOnClickListener(this);
+        imageButton9.setOnClickListener(this);
     }
 
     @Override
@@ -72,8 +96,7 @@ public class FullBodyMaleFragment extends Fragment implements View.OnClickListen
             measureTextLayout.setError(null);
         }
     if(isNotEmptyTextField){
-
-        Log.i("NDBOY", "you just clicked the button 2");
+        mViewModel.updateCurrValue(editTextString, view.getId());
     }
     }
 }
