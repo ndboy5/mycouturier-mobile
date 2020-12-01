@@ -1,4 +1,4 @@
-package com.raidify.mobi.mycouturier.ui.measurement;
+package com.raidify.mobi.mycouturier.model;
 
 import androidx.lifecycle.ViewModel;
 

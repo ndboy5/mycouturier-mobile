@@ -156,5 +156,13 @@
 
     </TableLayout>
 
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="72dp"
+        android:layout_height="120dp"
+        android:text="Save"
+        style="?attr/materialButtonOutlinedStyle"
+        app:layout_constraintStart_toEndOf="@+id/measureLengthTextLayout"
+        app:layout_constraintTop_toTopOf="@+id/measureLengthTextLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

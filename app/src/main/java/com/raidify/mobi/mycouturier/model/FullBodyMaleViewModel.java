@@ -1,7 +1,14 @@
 package com.raidify.mobi.mycouturier.model;
 
-public class Measurement {
-         private String description;
+import android.util.Log;
+
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
+import com.raidify.mobi.mycouturier.R;
+
+public class FullBodyMaleViewModel extends ViewModel {
+    private String description;
     private  String gender;
     private String unitOfMeasure;
     private float bust;
@@ -20,9 +27,33 @@ public class Measurement {
     private boolean  isFavourite;
     private String  lastupdateBy;
 
-    public Measurement() {
+    private String measureText = "0.0";
+    private MutableLiveData<Float> currValue = new MutableLiveData<>();
+
+    public void updateCurrValue(String value, int imageButtonId){
+
+        Log.i("NDBOY", "you just clicked the button " + imageButtonId + " with value " + value );
+
+        switch (imageButtonId){
+            case R.id.imageButton1:
+                Log.i("NDBOY", "na first button o");
+                break;
+            case R.id.imageButton2:
+                Log.i("NDBOY", "na the second one o");
+        }
+
+        this.measureText = value;
+        //TODO: if the postValue() doesn't give the right result then use setValue() here
+        //update the liveData asynchronously
+        currValue.postValue(Float.valueOf(measureText));
     }
 
+    public MutableLiveData<Float> getCurrValue(){
+        return  currValue;
+    }
+
+
+    //Getters and setters for Measurement attributes
     public String getDescription() {
         return description;
     }
@@ -166,4 +197,5 @@ public class Measurement {
     public void setLastupdateBy(String lastupdateBy) {
         this.lastupdateBy = lastupdateBy;
     }
+
 }

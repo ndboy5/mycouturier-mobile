@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.raidify.mobi.mycouturier.R;
 import com.raidify.mobi.mycouturier.api_server.APIServerSingleton;
+import com.raidify.mobi.mycouturier.model.FullBodyFemaleViewModel;
 
 import org.json.JSONObject;
 

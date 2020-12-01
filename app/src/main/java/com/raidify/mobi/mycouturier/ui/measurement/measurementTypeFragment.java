@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.raidify.mobi.mycouturier.R;
+import com.raidify.mobi.mycouturier.model.MeasurementTypeViewModel;
 
 public class measurementTypeFragment extends Fragment {
 

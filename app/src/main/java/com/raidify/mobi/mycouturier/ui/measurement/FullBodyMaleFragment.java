@@ -13,11 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.android.material.textview.MaterialTextView;
 import com.raidify.mobi.mycouturier.R;
+import com.raidify.mobi.mycouturier.model.FullBodyMaleViewModel;
 
 public class FullBodyMaleFragment extends Fragment implements View.OnClickListener {
 
@@ -32,6 +34,8 @@ public class FullBodyMaleFragment extends Fragment implements View.OnClickListen
     private ImageButton imageButton7;
     private ImageButton imageButton8;
     private ImageButton imageButton9;
+    private Button saveButton;
+    private String activeBodyPart = "shoulder"; //used to determine which measurement attribute is updated/active
 
     public static FullBodyMaleFragment newInstance() {
         return new FullBodyMaleFragment();
@@ -60,6 +64,7 @@ public class FullBodyMaleFragment extends Fragment implements View.OnClickListen
         imageButton7 = getView().findViewById(R.id.imageButton7);
         imageButton8 = getView().findViewById(R.id.imageButton8);
         imageButton9 = getView().findViewById(R.id.imageButton9);
+        saveButton = getView().findViewById(R.id.saveBtn);
 
         //Configure LiveData observer
         final Observer<Float> measureTextObserver = new Observer<Float>() {
@@ -81,10 +86,51 @@ public class FullBodyMaleFragment extends Fragment implements View.OnClickListen
         imageButton7.setOnClickListener(this);
         imageButton8.setOnClickListener(this);
         imageButton9.setOnClickListener(this);
+        saveButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
+
+        int buttonId = view.getId();
+
+
+        //TODO: Refactor this code
+//        mViewModel.updateCurrValue(editTextString, buttonId);
+
+        switch (buttonId) {
+            case R.id.saveBtn:
+                Log.i("NDBOY", "you clicked the save button");
+                updateModel(activeBodyPart);
+
+                break;
+            case R.id.imageButton1:
+                changeBackgroundColor(view);
+                activeBodyPart = "shoulder";
+                break;
+            case R.id.imageButton2:
+                changeBackgroundColor(view);
+                activeBodyPart = "waist";
+                break;
+            case R.id.imageButton3:
+                changeBackgroundColor(view);
+                activeBodyPart = "hip";
+                break;
+                //TODO: complete logic for all Nine (9) buttons
+        }
+        measureTextLayout.setHint(activeBodyPart);
+
+        }
+
+
+
+    private void changeBackgroundColor(View view){
+        ImageButton imageButton = (ImageButton) view;
+        imageButton.setBackgroundResource(R.color.colorPrimaryDark); //TODO: Find a better color jor
+    }
+
+    private void updateModel(String activeBodyPart) {
+
         String editTextString = measureTextLayout.getEditText().getText().toString();
         //TODO: Perform further validation here
         boolean isNotEmptyTextField = true;
@@ -95,8 +141,19 @@ public class FullBodyMaleFragment extends Fragment implements View.OnClickListen
         } else {
             measureTextLayout.setError(null);
         }
-    if(isNotEmptyTextField){
-        mViewModel.updateCurrValue(editTextString, view.getId());
-    }
+        if (isNotEmptyTextField) {
+            switch (activeBodyPart) {
+                case "shoulder":
+
+                    Log.i("NDBOY", "shoulder");
+                    break;
+                case "waist":
+                    Log.i("NDBOY", "waist");
+                    break;
+                case "inseam":
+                    Log.i("NDBOY", "inseam");
+            }
+            Toast.makeText (getContext(),"Size " + editTextString + " saved", Toast.LENGTH_SHORT).show();
+        }
     }
 }
