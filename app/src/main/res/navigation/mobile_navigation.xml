@@ -18,7 +18,7 @@
             app:destination="@id/nav_slideshow" />
         <action
             android:id="@+id/action_nav_home_to_nav_measurement"
-            app:destination="@id/nav_measurement" />
+            app:destination="@id/nav_new_measurement" />
     </fragment>
 
     <fragment
@@ -33,25 +33,47 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
-        android:id="@+id/nav_measurement"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.measurementTypeFragment"
+        android:id="@+id/nav_new_measurement"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.NewMeasurementFragment"
         android:label="measurement_type__fragment"
-        tools:layout="@layout/measurement_type__fragment" >
+        tools:layout="@layout/new_measurement__fragment" >
         <action
-            android:id="@+id/action_nav_measurement_to_nav_fullBodyFemaleFragment"
-            app:destination="@id/nav_fullBodyFemaleFragment" />
+            android:id="@+id/action_nav_new_measurement_to_maleUpperBodyFragment"
+            app:destination="@id/maleUpperBodyFragment" />
         <action
-            android:id="@+id/action_nav_measurement_to_nav_fullBodyMaleFragment"
-            app:destination="@id/nav_fullBodyMaleFragment" />
+            android:id="@+id/action_nav_new_measurement_to_femaleUpperBodyFragment"
+            app:destination="@id/femaleUpperBodyFragment" />
     </fragment>
     <fragment
-        android:id="@+id/nav_fullBodyFemaleFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.FullBodyFemaleFragment"
-        android:label="full_body_female_fragment"
-        tools:layout="@layout/full_body_female_fragment" />
+        android:id="@+id/maleUpperBodyFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.MaleUpperBodyFragment"
+        android:label="MaleUpperBodyFragment" >
+        <action
+            android:id="@+id/action_maleUpperBodyFragment_to_maleLowerBodyFragment"
+            app:destination="@id/maleLowerBodyFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/nav_fullBodyMaleFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.FullBodyMaleFragment"
-        android:label="full_body_male_fragment"
-        tools:layout="@layout/full_body_male_fragment" />
+        android:id="@+id/femaleUpperBodyFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.FemaleUpperBodyFragment"
+        android:label="FemaleUpperBodyFragment" >
+        <action
+            android:id="@+id/action_femaleUpperBodyFragment_to_femaleLowerBodyFragment"
+            app:destination="@id/femaleLowerBodyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/femaleLowerBodyFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.FemaleLowerBodyFragment"
+        android:label="FemaleLowerBodyFragment" >
+        <action
+            android:id="@+id/action_femaleLowerBodyFragment_to_femaleUpperBodyFragment"
+            app:destination="@id/femaleUpperBodyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/maleLowerBodyFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.MaleLowerBodyFragment"
+        android:label="MaleLowerBodyFragment" >
+        <action
+            android:id="@+id/action_maleLowerBodyFragment_to_maleUpperBodyFragment"
+            app:destination="@id/maleUpperBodyFragment" />
+    </fragment>
 </navigation>

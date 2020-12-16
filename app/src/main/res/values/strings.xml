@@ -27,4 +27,6 @@
     <string name="inch_text">inch</string>
     <string name="mm_text">mm</string>
     <string name="error_empty_string">Please enter a valid size</string>
+    <string name="description">Measurement Description</string>
+    <string name="desc_helper_text">E.g Dr. Jenny Ajayi</string>
 </resources>

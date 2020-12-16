@@ -13,32 +13,36 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.raidify.mobi.mycouturier.R;
-import com.raidify.mobi.mycouturier.model.MeasurementTypeViewModel;
 
-public class measurementTypeFragment extends Fragment {
+public class NewMeasurementFragment extends Fragment {
 
-    private MeasurementTypeViewModel mViewModel;
+    private NewMeasurementViewModel mViewModel;
 
-    public static measurementTypeFragment newInstance() {
-        return new measurementTypeFragment();
+    public static NewMeasurementFragment newInstance() {
+        return new NewMeasurementFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.measurement_type__fragment, container, false);
+        return inflater.inflate(R.layout.new_measurement__fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        mViewModel = ViewModelProviders.of(this).get(MeasurementTypeViewModel.class); //Deprecated
+//        mViewModel = ViewModelProviders.of(this).get(NewMeasurementViewModel.class); //Deprecated
         //This is the new way of loading the View model.
-        mViewModel = new ViewModelProvider(this).get(MeasurementTypeViewModel.class);
+        mViewModel = new ViewModelProvider(requireActivity()).get(NewMeasurementViewModel.class);
 
         Button nextBtn = getView().findViewById(R.id.goToMeasurementEntryBtn);
         final MaterialButtonToggleGroup genderToggleBtn = getView().findViewById(R.id.toggleButton);
+        final MaterialButtonToggleGroup unitsToggleBtn = getView().findViewById(R.id.unitsOfMeasurement);
+        final TextInputLayout descText = getView().findViewById(R.id.description);
+
 
 
         // NOTE: The gender and Body Type selected determines the fragment to bew called.
@@ -46,17 +50,20 @@ public class measurementTypeFragment extends Fragment {
         nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                //set the measurement unit
+                mViewModel.setMeasurementUnit(unitsToggleBtn.getCheckedButtonId());
 
                 int genderIndex =  genderToggleBtn.indexOfChild(genderToggleBtn.findViewById(genderToggleBtn.getCheckedButtonId()));
-
+                mViewModel.setDescription(descText.getEditText().getText().toString());
                 final int MALE = 0; final int FEMALE = 1; //declare constants for Male and Female toggleBtn
                 //TODO: Optionally perform validation here. Call validation method
                 if (genderIndex==MALE){
-                    Navigation.findNavController(view).navigate(R.id.action_nav_measurement_to_nav_fullBodyMaleFragment);
+                    mViewModel.setGender("M");
+                    Navigation.findNavController(view).navigate(R.id.action_nav_new_measurement_to_maleUpperBodyFragment);
 
                 } else if (genderIndex==FEMALE){
-
-                    Navigation.findNavController(view).navigate(R.id.action_nav_measurement_to_nav_fullBodyFemaleFragment);
+                    mViewModel.setGender("F");
+                    Navigation.findNavController(view).navigate(R.id.action_nav_new_measurement_to_femaleUpperBodyFragment);
                 } else {
                     //TODO: Error handling here
                 }
