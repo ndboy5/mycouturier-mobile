@@ -1,20 +1,40 @@
+/**
+ * This view model is used by the Measurements fragments for the creation of new Measurement Records
+ */
+
 package com.raidify.mobi.mycouturier.ui.measurement;
 
+import android.app.Application;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.raidify.mobi.mycouturier.R;
-import com.raidify.mobi.mycouturier.model.Measurement;
+import com.raidify.mobi.mycouturier.ROOMDB.Repository;
+import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
 
-public class NewMeasurementViewModel extends ViewModel {
+import java.util.List;
+
+public class NewMeasurementViewModel extends AndroidViewModel {
     private final MutableLiveData<Float> currEntry = new MutableLiveData<>();
     private final Measurement measurement = new Measurement();
+    private List<Measurement> allMeasurements;
+    private Repository repository;
+
+    //Constructor
+    public NewMeasurementViewModel (Application application) {
+        super(application);
+   //     Log.i("NDBOY", "It got this far");
+        repository = new Repository(application);
+        Log.i("NDBOY", "But couldn't get here");
+        allMeasurements = repository.getAllMeasurements();
+    }
+
 
     public LiveData<Float> getCurrEntry(){
         return currEntry;
@@ -98,6 +118,11 @@ public class NewMeasurementViewModel extends ViewModel {
                 break;
         }
 
+    }
+
+    public void saveMeasurementToLocalDB(){
+    repository.insertMeasurement(this.measurement);
+    Log.i("NDBOY", "measurement inserted successfully.");
     }
 
 }

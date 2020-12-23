@@ -146,6 +146,7 @@ public class MaleLowerBodyFragment extends Fragment implements View.OnClickListe
                 setTextLayoutHint(Constants.BD_FULLHEIGHT);
                 activeBodyPart = buttonId;
                 mViewModel.setActiveBtnBackgroundColor(view);
+                mViewModel.saveMeasurementToLocalDB(); //TODO: For test only
                 break;
             //TODO: complete logic for all Nine (9) buttons
             case R.id.upperBodyNavBtn:

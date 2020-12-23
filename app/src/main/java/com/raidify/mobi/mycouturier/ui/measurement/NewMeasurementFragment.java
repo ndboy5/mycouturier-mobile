@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
@@ -45,7 +46,7 @@ public class NewMeasurementFragment extends Fragment {
 
 
 
-        // NOTE: The gender and Body Type selected determines the fragment to bew called.
+        // NOTE: The gender and Body Type selected determines the fragment to be called.
         //To check for gender when the user clicks genderToggleBtn
         nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override

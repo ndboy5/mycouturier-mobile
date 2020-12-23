@@ -97,9 +97,7 @@ public class MaleUpperBodyFragment extends Fragment implements View.OnClickListe
 
         switch (buttonId) {
             case R.id.saveMLBodyBtn:
-                Log.i("NDBOY", "you clicked the save button");
         String editTextString = measureTextLayout.getEditText().getText().toString();
-
         //TODO: Perform further validation here
         boolean isNotEmptyTextField = true;
 
@@ -111,6 +109,7 @@ public class MaleUpperBodyFragment extends Fragment implements View.OnClickListe
         }
         if (isNotEmptyTextField && activeBodyPart!= 0) {
             mViewModel.setUpperBDPartEntry(editTextString, activeBodyPart);
+            mViewModel.saveMeasurementToLocalDB();
             Toast.makeText (getContext(),"Size " + editTextString + " saved", Toast.LENGTH_SHORT).show();
         }
                 break;

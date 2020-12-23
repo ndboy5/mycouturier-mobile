@@ -1,0 +1,9 @@
+1. ROOM Persistence:
+ - https://developer.android.com/topic/libraries/architecture/room
+ - https://developer.android.com/codelabs/android-room-with-a-view#8
+
+2. Single Activity (Multiple fragments with Single Viewmodel)
+ - https://developer.android.com/topic/libraries/architecture/viewmodel
+ - https://developer.android.com/guide/fragments/communicate
+
+3. 
