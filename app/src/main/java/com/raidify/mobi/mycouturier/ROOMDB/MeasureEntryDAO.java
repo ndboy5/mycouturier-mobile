@@ -18,7 +18,7 @@ public interface MeasureEntryDAO {
 
     //Retrieves body length entries belonging to a single measurement
     @Query("SELECT * FROM MeasureEntry WHERE measurementId =:measureId")
-    List<Measurement> getMeasureEntries(int measureId);
+    List<MeasureEntry> getMeasureEntries(int measureId);
 
     //Deletes all body length entries belonging to a single Measurement by ID
     @Query("DELETE FROM MeasureEntry WHERE measurementId =:id")

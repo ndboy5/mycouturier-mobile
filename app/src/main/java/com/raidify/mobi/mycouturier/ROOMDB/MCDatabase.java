@@ -12,7 +12,7 @@ import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Measurement.class, MeasureEntry.class}, version = 1)
+@Database(entities = {Measurement.class, MeasureEntry.class}, version = 2)
 public abstract class MCDatabase extends RoomDatabase {
 
     public abstract MeasurementDAO measurementDAO();

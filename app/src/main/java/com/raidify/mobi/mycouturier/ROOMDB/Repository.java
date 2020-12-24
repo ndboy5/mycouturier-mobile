@@ -15,8 +15,13 @@ public class Repository {
     //Declare DAOs
     private MeasurementDAO measurementDAO;
     private MeasureEntryDAO measureEntryDAO;
+
     //Declare variables
     private List<Measurement> allMeasurements;
+    private List<MeasureEntry> measureEntries;
+    //Single measurement
+    private Measurement measurement;
+
     //TODO: Develop search feature for measurements saved on Device or cloud
     private MutableLiveData<List<Measurement>> searchResults = new MutableLiveData<>();
 
@@ -38,9 +43,11 @@ public class Repository {
     }
 
     public void insertMeasurement(Measurement measurement){
+//TODO: modify this function and the DAO to return the inserted Measurement/MeasurementId;
         MCDatabase.databaseWriteExecutor.execute(() -> {
             measurementDAO.insertMeasurement(measurement);
         });
+
     }
 
     private void deleteMeasurement(int measurementID){
@@ -50,11 +57,11 @@ public class Repository {
     }
 
     //Returns a list of all body measure entries belonging to a measurement Record from the Local DB
-    public List<Measurement> getMeasureEntriesBy(int measurementId){
+    public List<MeasureEntry> getMeasureEntriesBy(int measurementId){
         MCDatabase.databaseWriteExecutor.execute(() ->{
-            allMeasurements =   measureEntryDAO.getMeasureEntries(measurementId);
+            measureEntries =   measureEntryDAO.getMeasureEntries(measurementId);
         });
-        return allMeasurements;
+        return measureEntries;
     }
 
     public void insertMeasureEntry(MeasureEntry measureEntry){

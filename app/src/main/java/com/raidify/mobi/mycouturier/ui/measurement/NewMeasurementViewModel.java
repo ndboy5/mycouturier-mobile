@@ -47,38 +47,17 @@ public class NewMeasurementViewModel extends AndroidViewModel {
     public void setUpperBDPartEntry(String val, int buttonID) {
 
             setCurrEntry(Float.valueOf(val));
+
+            //TODO: Update the model with the current Values
             switch (buttonID) {
                 case R.id.imageButton1:
-                    measurement.setShoulder(currEntry.getValue());
-                    Log.i("NDBOY", String.valueOf(measurement.getShoulder()) +" "+ measurement.getDescription());
                     break;
                 case R.id.imageButton2:
-                    measurement.setWaist(currEntry.getValue());
-                    Log.i("NDBOY", String.valueOf(measurement.getWaist()) +" "+ measurement.getDescription());
                     break;
                 case R.id.imageButton3:
-                    measurement.setInseam(currEntry.getValue());
-                    Log.i("NDBOY", String.valueOf(measurement.getHip()) +" "+ measurement.getDescription());
             }
         }
 
-    public void setLowerBDPartEntry(String val, int buttonID) {
-
-        setCurrEntry(Float.valueOf(val));
-        switch (buttonID) {
-            case R.id.imageButton1:
-                measurement.setShoulder(currEntry.getValue());
-                Log.i("NDBOY", String.valueOf(measurement.getShoulder()) +" "+ measurement.getDescription());
-                break;
-            case R.id.imageButton2:
-                measurement.setWaist(currEntry.getValue());
-                Log.i("NDBOY", String.valueOf(measurement.getWaist()) +" "+ measurement.getDescription());
-                break;
-            case R.id.imageButton3:
-                measurement.setInseam(currEntry.getValue());
-                Log.i("NDBOY", String.valueOf(measurement.getHip()) +" "+ measurement.getDescription());
-        }
-    }
 
     public void setActiveBtnBackgroundColor(View view){
         ImageButton imageButton = (ImageButton) view;
