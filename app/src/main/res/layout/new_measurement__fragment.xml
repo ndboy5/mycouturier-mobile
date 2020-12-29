@@ -7,18 +7,58 @@
     android:layout_height="match_parent"
     tools:context=".ui.measurement.NewMeasurementFragment">
 
+<!-- Chip group for the clothing style/Category e.g shits, trousers etc -->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/clothingStyle"
+        android:layout_width="380dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggleButton"
+        app:selectionRequired="true">
+
+        <!-- Chips can be declared here, or added dynamically. -->
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/fullBodyChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fullbody" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/shirtChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shirt" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/trouserChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trouser" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <!-- Toggle group for the measurement Units -->
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/unitsOfMeasurement"
-        android:layout_width="334dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="296dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton"
+        app:layout_constraintTop_toTopOf="parent"
         app:selectionRequired="true"
-        android:gravity="center_horizontal"
         app:singleSelection="true">
 
         <Button
@@ -49,14 +89,16 @@
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
+    <!-- Toggle Group for Gender -->
+
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/toggleButton"
-        android:layout_width="195dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="181dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unitsOfMeasurement"
         app:selectionRequired="true"
         app:singleSelection="true">
 
@@ -80,39 +122,40 @@
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
-
     <Button
         android:id="@+id/goToMeasurementEntryBtn"
-        style="?attr/materialButtonOutlinedStyle"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="448dp"
+        android:layout_marginTop="40dp"
         android:text="@string/nextBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        />
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/description"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="363dp"
+        android:layout_height="93dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
         android:inputType="textAutoCorrect"
         app:helperText="@string/desc_helper_text"
         app:helperTextEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unitsOfMeasurement">
+        app:layout_constraintTop_toBottomOf="@+id/clothingStyle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descriptionText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="310dp"
+            android:layout_height="59dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="80dp"
             android:layout_marginEnd="24dp"

@@ -38,42 +38,11 @@
         android:label="measurement_type__fragment"
         tools:layout="@layout/new_measurement__fragment" >
         <action
-            android:id="@+id/action_nav_new_measurement_to_maleUpperBodyFragment"
-            app:destination="@id/maleUpperBodyFragment" />
-        <action
-            android:id="@+id/action_nav_new_measurement_to_femaleUpperBodyFragment"
-            app:destination="@id/femaleUpperBodyFragment" />
+            android:id="@+id/action_nav_new_measurement_to_measureBodyPartFragment"
+            app:destination="@id/measureBodyPartFragment" />
     </fragment>
     <fragment
-        android:id="@+id/maleUpperBodyFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.MaleUpperBodyFragment"
-        android:label="MaleUpperBodyFragment" >
-        <action
-            android:id="@+id/action_maleUpperBodyFragment_to_maleLowerBodyFragment"
-            app:destination="@id/maleLowerBodyFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/femaleUpperBodyFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.FemaleUpperBodyFragment"
-        android:label="FemaleUpperBodyFragment" >
-        <action
-            android:id="@+id/action_femaleUpperBodyFragment_to_femaleLowerBodyFragment"
-            app:destination="@id/femaleLowerBodyFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/femaleLowerBodyFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.FemaleLowerBodyFragment"
-        android:label="FemaleLowerBodyFragment" >
-        <action
-            android:id="@+id/action_femaleLowerBodyFragment_to_femaleUpperBodyFragment"
-            app:destination="@id/femaleUpperBodyFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/maleLowerBodyFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.measurement.MaleLowerBodyFragment"
-        android:label="MaleLowerBodyFragment" >
-        <action
-            android:id="@+id/action_maleLowerBodyFragment_to_maleUpperBodyFragment"
-            app:destination="@id/maleUpperBodyFragment" />
-    </fragment>
+        android:id="@+id/measureBodyPartFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.MeasureBodypartFragment"
+        android:label="MaleUpperBodyFragment" />
 </navigation>

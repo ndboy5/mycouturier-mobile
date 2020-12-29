@@ -19,14 +19,13 @@
     <string name="midBody">Mid Section</string>
     <string name="lowerBody">Lower Body</string>
     <string name="nextBtn">Next</string>
-    <string name="shoulderLen">Shoulder</string>
-    <string name="neck">Neck</string>
-    <string name="waist">Waist</string>
-    <string name="bodyPartText">shoulder</string>
     <string name="centimeter_text">cm</string>
     <string name="inch_text">inch</string>
     <string name="mm_text">mm</string>
     <string name="error_empty_string">Please enter a valid size</string>
     <string name="description">Measurement Description</string>
     <string name="desc_helper_text">E.g Dr. Jenny Ajayi</string>
+    <string name="fullbody">Full Body</string>
+    <string name="shirt">Shirts</string>
+    <string name="trouser">trouser</string>
 </resources>

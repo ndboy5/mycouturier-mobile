@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/deleteBtn"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:text="X"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bodyPartTextView"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@+id/deleteBtn"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@id/deleteBtn"
+                android:text="body part goes here"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/lengthTextView"
+                android:layout_width="30dp"
+                android:layout_height="42dp"
+                android:layout_alignTop="@+id/bodyPartTextView"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@id/bodyPartTextView"
+                android:text="0"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
