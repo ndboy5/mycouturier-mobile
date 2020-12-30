@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/bodyPartTextView"
-                android:layout_width="150dp"
+                android:layout_width="160dp"
                 android:layout_height="match_parent"
                 android:layout_alignTop="@+id/deleteBtn"
                 android:layout_marginStart="6dp"
@@ -45,10 +45,18 @@
                 android:layout_width="30dp"
                 android:layout_height="42dp"
                 android:layout_alignTop="@+id/bodyPartTextView"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="6dp"
+                android:layout_alignBottom="@id/bodyPartTextView"
                 android:layout_toEndOf="@id/bodyPartTextView"
                 android:text="0"
                 android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/lengthTextView"
+                app:srcCompat="@drawable/armwidth" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

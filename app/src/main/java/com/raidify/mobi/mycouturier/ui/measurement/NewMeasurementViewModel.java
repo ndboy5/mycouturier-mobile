@@ -5,6 +5,7 @@
 package com.raidify.mobi.mycouturier.ui.measurement;
 
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -65,34 +66,14 @@ public class NewMeasurementViewModel extends AndroidViewModel {
         initializeClothingStylesTree();
     }
 
-    public LiveData<Float> getCurrEntry(){
-        return currEntry;
+    public MeasureEntry getMeasureEntryByListIndex(int index){
+        return measureEntries.get(index);
     }
 
-    public void setCurrEntry(Float m){
-        this.currEntry.setValue(m);
-    }
-
-    public void setUpperBDPartEntry(String val, int buttonID) {
-
-
-
-            setCurrEntry(Float.valueOf(val));
-
-            //TODO: Update the model with the current Values
-        }
-
-
-    public void setActiveBtnBackgroundColor(View view){
-        ImageButton imageButton = (ImageButton) view;
-        imageButton.setBackgroundResource(R.color.colorPrimaryDark); //TODO: Find a better color jor
-     }
-
-
-     //TODO: Resolve the error in this method
-    public void resetActiveBtnBackgroundColor(View view){
-        ImageButton imageButton = (ImageButton) view;
-        imageButton.setBackgroundResource(R.color.WHITE); //TODO: Find a better color
+   //This method updates the List of measure entries being used by the MeasureBodyPart Fragment
+   //This does not save to the Local DB but only saves the changes on the view model Array List
+    public void updateMeasureEntry(int rowIndex, MeasureEntry mEntry){
+        this.measureEntries.set(rowIndex, mEntry);
     }
 
     //Returns measurement Entries TODO: Make the entries live data for the UI
@@ -132,10 +113,24 @@ public class NewMeasurementViewModel extends AndroidViewModel {
 
     }
 
-//TODO:
+    // This method saves the measurement details and obtains the measurement ID before saving the entries
+    //TODO: Consider moving the method call to the NewMeasurements fragment (separating concerns)
     public void saveMeasurementToLocalDB(){
-    repository.insertMeasurement(this.measurement);
-    Log.i("NDBOY", "measurement inserted successfully.");
+    Long measurementRowId  = repository.insertMeasurement(this.measurement);
+    Log.i("NDBOY", "Measurement" + measurement.getDescription() + "inserted successfully with ID: " + measurementRowId);
+    //TODO
+    saveMeasurementEntriesToLocalDB(measurementRowId);
+    }
+
+    //This method is called by the saveMeasurementToLocalDB method.
+    //It saves the measurementEntries list when the user is done with measurement entries.
+    private void saveMeasurementEntriesToLocalDB(Long measurementId){
+        for (MeasureEntry me: this.measureEntries){
+            me.setMeasurementId(measurementId);
+            repository.insertMeasureEntry(me);
+        }
+
+        Log.i("NDBOY", this.measureEntries.size() +  " Measurement entries inserted successfully"); //TODO: For delete
     }
 
     //This method takes the clothing style/categories selected by the user as input.
@@ -168,14 +163,17 @@ public class NewMeasurementViewModel extends AndroidViewModel {
 
             Log.i("NDBOY", "Selected Part list count :" + selectedBodyPartList.size()); //TODO: Remove log test code
 
-        }
+    }
+
+        //Build the List of measure Entries before loading to UI/Recycle Adapter
+        generateMeasureEntryList();
     }
 
     /**
      * This method converts the MeasureEntry to a list.
      * The use of LIST as against a SET or MAP for the Recycler View object is advisable
      */
-    public List<MeasureEntry> generateMeasureEntryList(){
+    private void generateMeasureEntryList(){
         List<MeasureEntry> newMeasureEntries= new ArrayList<>();
         for (String part: selectedBodyPartList){
             MeasureEntry measureEntry = new MeasureEntry();
@@ -185,7 +183,7 @@ public class NewMeasurementViewModel extends AndroidViewModel {
         }
         this.measureEntries = newMeasureEntries;
         Log.i("NDBOY", "Measure Entry list count: " + this.measureEntries.size());
-        return this.measureEntries;
+
     }
 
 

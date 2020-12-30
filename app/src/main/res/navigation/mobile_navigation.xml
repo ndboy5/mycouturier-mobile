@@ -44,5 +44,22 @@
     <fragment
         android:id="@+id/measureBodyPartFragment"
         android:name="com.raidify.mobi.mycouturier.ui.measurement.MeasureBodypartFragment"
-        android:label="MaleUpperBodyFragment" />
+        android:label="MaleUpperBodyFragment" >
+        <action
+            android:id="@+id/action_measureBodyPartFragment_to_lengthEntryFragment"
+            app:destination="@id/lengthEntryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lengthEntryFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.LengthEntryFragment"
+        android:label="length_entry_fragment"
+        tools:layout="@layout/length_entry_fragment" >
+        <argument
+            android:name="adtrPosition"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_lengthEntryFragment_to_measureBodyPartFragment"
+            app:destination="@id/measureBodyPartFragment" />
+    </fragment>
 </navigation>

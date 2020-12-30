@@ -1,13 +1,16 @@
 package com.raidify.mobi.mycouturier.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.raidify.mobi.mycouturier.R;
@@ -39,7 +42,6 @@ public class MeasureEntryRecyclerAdapter extends RecyclerView.Adapter<MeasureEnt
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.i("NDBOY", "To bind object in Position: " + position + " of "+ measureEntryList.size());
         // bind the view and the data here
         MeasureEntry measureEntry = this.measureEntryList.get(position); //get the entries one by one from the List
         holder.length.setText(measureEntry.getLength().toString());
@@ -55,6 +57,8 @@ public class MeasureEntryRecyclerAdapter extends RecyclerView.Adapter<MeasureEnt
     public class  ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView bodyPart;
         public TextView length;
+        //TODO: Make the delete button work
+        public Button deleteButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,13 +69,26 @@ public class MeasureEntryRecyclerAdapter extends RecyclerView.Adapter<MeasureEnt
             //Find the textViews on the measure body part row XML file
             bodyPart = itemView.findViewById(R.id.bodyPartTextView);
             length = itemView.findViewById(R.id.lengthTextView);
+            deleteButton = itemView.findViewById(R.id.deleteBtn);
+
+            //NOTE: The listener for this button MUST come after being found using the findViewById method
+//            deleteButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
             int pos = getAdapterPosition(); //To get the current adapter position
 
-            Log.i("NDBOY", "clicked the " + measureEntryList.get(pos).getPart() + " body part");
+            Log.i("NDBOY", "clicked the " + measureEntryList.get(pos).getPart() + " body part"); //TODO: for delete
+
+
+            Bundle bundle = new Bundle();
+            bundle.putInt("adtrPosition", pos);
+            //navigate to body part entries and send the adapter position/index as a bundle
+            Navigation.findNavController(view).navigate(R.id.action_measureBodyPartFragment_to_lengthEntryFragment, bundle);
+
+            //handle delete button in Card TODO: (Not working)
+            if (view.getId()==R.id.deleteBtn) measureEntryList.remove(pos);
         }
     }
 }

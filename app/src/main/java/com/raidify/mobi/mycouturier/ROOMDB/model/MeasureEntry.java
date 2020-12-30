@@ -10,7 +10,7 @@ public class MeasureEntry {
  @ColumnInfo(name = "id")
  private int id;
  @ColumnInfo(name = "measurementId")
- private int measurementId;
+ private Long measurementId;
  @ColumnInfo(name = "part")
  private String part;
  @ColumnInfo(name = "length")
@@ -24,11 +24,11 @@ public class MeasureEntry {
   this.id = id;
  }
 
- public int getMeasurementId() {
+ public Long getMeasurementId() {
   return measurementId;
  }
 
- public void setMeasurementId(int measurementId) {
+ public void setMeasurementId(Long measurementId) {
   this.measurementId = measurementId;
  }
 

@@ -12,7 +12,7 @@ import java.util.List;
 @Dao
 public interface MeasurementDAO {
     @Insert (onConflict = OnConflictStrategy.REPLACE)
-    void insertMeasurement (Measurement measurement); //TODO: Test the return value after insert to get the ID
+    Long insertMeasurement (Measurement measurement); //TODO: Test the return value after insert to get the ID
 
     @Query("SELECT * FROM Measurements")
     List<Measurement> getAllMeasurements();

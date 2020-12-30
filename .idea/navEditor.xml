@@ -8,67 +8,25 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="femaleLowerBodyFragment">
+                  <entry key="lengthEntryFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="690" />
-                            <option name="y" value="322" />
-                          </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_femaleLowerBodyFragment_to_femaleUpperBodyFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="femaleUpperBodyFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="440" />
-                            <option name="y" value="322" />
-                          </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_femaleUpperBodyFragment_to_femaleLowerBodyFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="maleLowerBodyFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="694" />
-                            <option name="y" value="25" />
+                            <option name="x" value="632" />
+                            <option name="y" value="527" />
                           </Point>
                         </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="maleUpperBodyFragment">
+                  <entry key="measureBodyPartFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="413" />
-                            <option name="y" value="34" />
+                            <option name="x" value="428" />
+                            <option name="y" value="596" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -79,8 +37,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="50" />
-                            <option name="y" value="454" />
+                            <option name="x" value="220" />
+                            <option name="y" value="304" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -91,8 +49,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-256" />
-                            <option name="y" value="154" />
+                            <option name="x" value="12" />
+                            <option name="y" value="60" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -122,18 +80,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="196" />
-                            <option name="y" value="248" />
+                            <option name="x" value="220" />
+                            <option name="y" value="596" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_nav_new_measurement_to_femaleUpperBodyFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_nav_new_measurement_to_maleUpperBodyFragment">
+                            <entry key="action_nav_new_measurement_to_measureBodyPartFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -148,8 +101,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="71" />
-                            <option name="y" value="5" />
+                            <option name="x" value="220" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                       </LayoutPositions>

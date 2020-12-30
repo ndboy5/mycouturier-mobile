@@ -21,6 +21,7 @@ public class Repository {
     private List<MeasureEntry> measureEntries;
     //Single measurement
     private Measurement measurement;
+    private Long measurementId; //To hold return value after insertion into DB
 
     //TODO: Develop search feature for measurements saved on Device or cloud
     private MutableLiveData<List<Measurement>> searchResults = new MutableLiveData<>();
@@ -42,12 +43,13 @@ public class Repository {
         return allMeasurements;
     }
 
-    public void insertMeasurement(Measurement measurement){
+    public Long insertMeasurement(Measurement measurement){
 //TODO: modify this function and the DAO to return the inserted Measurement/MeasurementId;
         MCDatabase.databaseWriteExecutor.execute(() -> {
-            measurementDAO.insertMeasurement(measurement);
+           this.measurementId = measurementDAO.insertMeasurement(measurement);
         });
 
+        return this.measurementId;
     }
 
     private void deleteMeasurement(int measurementID){
