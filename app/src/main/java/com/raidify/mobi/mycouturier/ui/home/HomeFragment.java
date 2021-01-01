@@ -16,7 +16,7 @@ import androidx.navigation.Navigation;
 import com.google.android.material.button.MaterialButton;
 import com.raidify.mobi.mycouturier.R;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private HomeViewModel homeViewModel;
 
@@ -35,15 +35,28 @@ public class HomeFragment extends Fragment {
         //Get the buttons
      MaterialButton measureBtn = getView().findViewById(R.id.measurementsBtn);
      MaterialButton ordersBtn = getView().findViewById(R.id.ordersBtn);
-     MaterialButton findBtn = getView().findViewById(R.id.findAccountBtn);
+     MaterialButton recordBookBtn = getView().findViewById(R.id.recordBookBtn);
 
-     // Create Listeners for each button
-     measureBtn.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View view) {
-             Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_measurement);
-         }
-     });
+     // set Listeners for each button
+     measureBtn.setOnClickListener(this);
+     ordersBtn.setOnClickListener(this);
+     recordBookBtn.setOnClickListener(this);
+
  }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.measurementsBtn:
+                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_measurement);
+                break;
+            case R.id.ordersBtn:
+                break;
+            case R.id.recordBookBtn:
+                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_measurementBookFragment);
+                break;
+            default:
+                break;
+        }
+    }
 }

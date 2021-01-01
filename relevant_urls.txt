@@ -1,9 +1,23 @@
 1. ROOM Persistence:
  - https://developer.android.com/topic/libraries/architecture/room
  - https://developer.android.com/codelabs/android-room-with-a-view#8
+ - 
 
 2. Single Activity (Multiple fragments with Single Viewmodel)
  - https://developer.android.com/topic/libraries/architecture/viewmodel
  - https://developer.android.com/guide/fragments/communicate
 
-3. 
+3. Recycler view adapter
+ - https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example/40584425#40584425
+ - https://stackoverflow.com/questions/31367599/how-to-update-recyclerview-adapter-data
+ - https://suragch.medium.com/updating-data-in-an-android-recyclerview-842e56adbfd8
+
+4. Multithreading and Android ROOM (executors)
+ - https://developer.android.com/guide/background/threading
+ - https://stackoverflow.com/questions/51937399/returning-data-from-executor-service
+
+5. Using Async Tasks for ROOM
+ - https://itnext.io/room-persistence-library-using-mutablelivedata-observable-to-update-the-ui-after-a-database-6836d25e8267
+ - 
+
+

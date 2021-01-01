@@ -8,8 +8,8 @@
     android:layout_marginBottom="6dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
+        android:layout_width="314dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,28 +17,37 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="8dp">
 
-            <Button
-                android:id="@+id/deleteBtn"
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:text="X"
-                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/lastUpdateTextView"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/descriptionTextView"
+                android:layout_marginTop="6dp"
+                android:text="0"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/unitTextView2"
+                android:layout_width="60dp"
+                android:layout_height="42dp"
+                android:layout_alignTop="@+id/descriptionTextView"
+                android:layout_alignBottom="@id/descriptionTextView"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@id/descriptionTextView"
+                android:text="0"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/descriptionTextView"
-                android:layout_width="180dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
                 android:layout_alignTop="@+id/deleteBtn"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="0dp"
-                android:layout_toEndOf="@id/deleteBtn"
                 android:text="body part goes here"
                 android:textSize="18sp" />
 
@@ -48,17 +57,12 @@
                 android:layout_height="42dp"
                 android:layout_alignTop="@+id/descriptionTextView"
                 android:layout_alignBottom="@id/descriptionTextView"
+                android:layout_marginLeft="6dp"
                 android:layout_marginTop="6dp"
-                android:layout_toEndOf="@id/descriptionTextView"
+                android:layout_toEndOf="@id/unitTextView2"
                 android:text="0"
                 android:textSize="18sp" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/genderTextView"
-                app:srcCompat="@drawable/armwidth" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

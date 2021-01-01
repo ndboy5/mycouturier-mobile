@@ -12,13 +12,13 @@ import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Measurement.class, MeasureEntry.class}, version = 2)
+@Database(entities = {Measurement.class, MeasureEntry.class}, version = 2, exportSchema = false)
 public abstract class MCDatabase extends RoomDatabase {
 
     public abstract MeasurementDAO measurementDAO();
     public abstract MeasureEntryDAO measureEntryDAO();
 
-    private static MCDatabase INSTANCE;
+    private static volatile MCDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =  Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 

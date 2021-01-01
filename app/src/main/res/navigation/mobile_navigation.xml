@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_measurement"
             app:destination="@id/nav_new_measurement" />
+        <action
+            android:id="@+id/action_nav_home_to_measurementBookFragment"
+            app:destination="@id/measurementBookFragment" />
     </fragment>
 
     <fragment
@@ -62,4 +65,9 @@
             android:id="@+id/action_lengthEntryFragment_to_measureBodyPartFragment"
             app:destination="@id/measureBodyPartFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/measurementBookFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.MeasurementBookFragment"
+        android:label="measurement_book_fragment"
+        tools:layout="@layout/measurement_book_fragment" />
 </navigation>

@@ -3,13 +3,17 @@ package com.raidify.mobi.mycouturier.ROOMDB;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.raidify.mobi.mycouturier.ROOMDB.model.MeasureEntry;
 import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class Repository {
     //Declare DAOs
@@ -17,7 +21,7 @@ public class Repository {
     private MeasureEntryDAO measureEntryDAO;
 
     //Declare variables
-    private List<Measurement> allMeasurements;
+    private MutableLiveData<List<Measurement>> allMeasurements = new MutableLiveData<>();
     private List<MeasureEntry> measureEntries;
     //Single measurement
     private Measurement measurement;
@@ -33,18 +37,32 @@ public class Repository {
         //initialize the DAOs
         measurementDAO = mcDatabase.measurementDAO();
         measureEntryDAO =  mcDatabase.measureEntryDAO();
+        //initialize the list arrays
+        measureEntries = new ArrayList<>();
     }
 
     //Return a list of all measurement in the Local DB
-    public List<Measurement> getAllMeasurements(){
-        MCDatabase.databaseWriteExecutor.execute(() ->{
-          allMeasurements =   measurementDAO.getAllMeasurements();
+    public void getAllMeasurements(final RepositoryCallback callback){
+        //TODO: Error handling. Surround all database calls with try-catch block
+      MCDatabase.databaseWriteExecutor.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    /* background thread */
+                    List<Measurement> data = measurementDAO.getAllMeasurements();
+                    callback.onComplete(data);
+
+//        Log.i("NDBOY", "The real measurement size is: " + data.size());
+                } catch (Exception e) {
+                    Log.i("NDBOY", "error on getting data from repo: "+ e);
+                }
+            }
         });
-        return allMeasurements;
+//        Log.i("NDBOY", "The real measurement size is: " + this.allMeasurements.getValue().size());
+         //TODO: The allMeasurements returns a null value. This data gets lost here
     }
 
     public Long insertMeasurement(Measurement measurement){
-//TODO: modify this function and the DAO to return the inserted Measurement/MeasurementId;
         MCDatabase.databaseWriteExecutor.execute(() -> {
            this.measurementId = measurementDAO.insertMeasurement(measurement);
         });
