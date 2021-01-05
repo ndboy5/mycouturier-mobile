@@ -2,10 +2,8 @@ package com.raidify.mobi.mycouturier.ROOMDB;
 
 
 import android.app.Application;
-import android.os.AsyncTask;
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.raidify.mobi.mycouturier.ROOMDB.model.MeasureEntry;
@@ -42,7 +40,7 @@ public class Repository {
     }
 
     //Return a list of all measurement in the Local DB
-    public void getAllMeasurements(final RepositoryCallback callback){
+    public void getAllMeasurements(final RepositoryMeasurementCallback callback){
         //TODO: Error handling. Surround all database calls with try-catch block
       MCDatabase.databaseWriteExecutor.submit(new Runnable() {
             @Override
@@ -61,32 +59,54 @@ public class Repository {
 //        Log.i("NDBOY", "The real measurement size is: " + this.allMeasurements.getValue().size());
          //TODO: The allMeasurements returns a null value. This data gets lost here
     }
-
-    public Long insertMeasurement(Measurement measurement){
+    // This method is called by the new measurement View model and used to create a new measurement
+    public Long insertMeasurement(Measurement measurement, List<MeasureEntry> measureEntries){
         MCDatabase.databaseWriteExecutor.execute(() -> {
            this.measurementId = measurementDAO.insertMeasurement(measurement);
+           //update the measureEntry list with new MeasureId and save on the Local DB
+            measureEntries.forEach(measureEntry -> {
+                measureEntry.setMeasurementId(this.measurementId);
+            });
+           measureEntryDAO.insertAll(measureEntries);
+            Log.i("NDBOY", "Measurement" + measurement.getDescription() + " was inserted successfully with ID: " + this.measurementId);
         });
 
         return this.measurementId;
     }
 
-    private void deleteMeasurement(int measurementID){
+    public void deleteMeasurement(int measurementID){
         MCDatabase.databaseWriteExecutor.execute(()->{
             measurementDAO.deleteMeasurement(measurementID);
         });
     }
 
-    //Returns a list of all body measure entries belonging to a measurement Record from the Local DB
-    public List<MeasureEntry> getMeasureEntriesBy(int measurementId){
-        MCDatabase.databaseWriteExecutor.execute(() ->{
-            measureEntries =   measureEntryDAO.getMeasureEntries(measurementId);
+    public void deleteAllMeasurement(){
+        MCDatabase.databaseWriteExecutor.execute(()->{
+            measurementDAO.deleteAllMeasurement();
         });
-        return measureEntries;
     }
 
-    public void insertMeasureEntry(MeasureEntry measureEntry){
+    //Returns a list of all body measure entries belonging to a measurement Record from the Local DB
+    public void getMeasureEntriesById(int measurementId, final RepositoryMeasureEntryCallback callback){
+        MCDatabase.databaseWriteExecutor.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // List<MeasureEntry>  measureEntries = measureEntryDAO.getMeasureEntries();
+                    List<MeasureEntry>  measureEntries = measureEntryDAO.getMeasureEntries(measurementId);
+                    callback.onComplete(measureEntries);
+                } catch (Exception error){
+                    Log.i("NDBOY", "Error from repository: "+ error);
+                }
+            }
+        }
+        );
+    }
+
+    public void insertMeasureEntry(List<MeasureEntry> measureEntry){
         MCDatabase.databaseWriteExecutor.execute(() -> {
-            measureEntryDAO.insertEntry(measureEntry);
+            measureEntryDAO.insertAll(measureEntry);
+//            measureEntryDAO.insertEntry(measureEntry);
         });
     }
 

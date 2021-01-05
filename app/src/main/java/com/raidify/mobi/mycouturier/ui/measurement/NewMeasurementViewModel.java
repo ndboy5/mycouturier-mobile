@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.raidify.mobi.mycouturier.R;
 import com.raidify.mobi.mycouturier.ROOMDB.Repository;
+import com.raidify.mobi.mycouturier.ROOMDB.RepositoryMeasureEntryCallback;
 import com.raidify.mobi.mycouturier.ROOMDB.model.MeasureEntry;
 import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
 import com.raidify.mobi.mycouturier.util.Constants;
@@ -44,13 +46,11 @@ import static com.raidify.mobi.mycouturier.util.Constants.TROUSER;
 import static com.raidify.mobi.mycouturier.util.Constants.WAIST;
 
 public class NewMeasurementViewModel extends AndroidViewModel {
-    private final MutableLiveData<Float> currEntry = new MutableLiveData<>();
     private final Measurement measurement = new Measurement();
 
-//    private List<Measurement> allMeasurements;
     private Repository repository;
     private Set<String> selectedBodyPartList = new HashSet<String>();
-    private List<MeasureEntry> measureEntries = new ArrayList<>();
+    private MutableLiveData<List<MeasureEntry>> measureEntries = new MutableLiveData<>();
 
 
     //TODO: Initialize it with a nice initial capacity and loading factor for production
@@ -60,25 +60,27 @@ public class NewMeasurementViewModel extends AndroidViewModel {
     public NewMeasurementViewModel (Application application) {
         super(application);
         repository = new Repository(application);
- //        allMeasurements = repository.getAllMeasurements();
 
         //Initialize the clothing Style Tree.
         initializeClothingStylesTree();
     }
 
+    public Measurement getActiveMeasurement(){
+        return this.measurement;
+    }
+    //Returns measurement Entries TODO: Make the entries live data for the UI
+    public MutableLiveData<List<MeasureEntry>> getMeasureEntries(){
+        return this.measureEntries;
+    }
+
     public MeasureEntry getMeasureEntryByListIndex(int index){
-        return measureEntries.get(index);
+        return measureEntries.getValue().get(index);
     }
 
    //This method updates the List of measure entries being used by the MeasureBodyPart Fragment
    //This does not save to the Local DB but only saves the changes on the view model Array List
     public void updateMeasureEntry(int rowIndex, MeasureEntry mEntry){
-        this.measureEntries.set(rowIndex, mEntry);
-    }
-
-    //Returns measurement Entries TODO: Make the entries live data for the UI
-    public List<MeasureEntry> getMeasureBodyPart(){
-        return measureEntries;
+        this.measureEntries.getValue().set(rowIndex, mEntry);
     }
 
     public void setGender(int genderIndex){
@@ -97,17 +99,17 @@ public class NewMeasurementViewModel extends AndroidViewModel {
     public void setMeasurementUnit(int selectedUnit){
         switch (selectedUnit) {
             case R.id.cmUnit:
-                measurement.setUnitOfMeasure("cm");
+                measurement.setUnit("cm");
                 break;
             case R.id.mmUnit:
-                measurement.setUnitOfMeasure("mm");
+                measurement.setUnit("mm");
                 break;
             case R.id.inchUnit:
-                measurement.setUnitOfMeasure("inch");
+                measurement.setUnit("inch");
                 break;
 
             default:
-                measurement.setUnitOfMeasure("cm");
+                measurement.setUnit("cm");
                 break;
         }
 
@@ -115,22 +117,20 @@ public class NewMeasurementViewModel extends AndroidViewModel {
 
     // This method saves the measurement details and obtains the measurement ID before saving the entries
     //TODO: Consider moving the method call to the NewMeasurements fragment (separating concerns)
-    public void saveMeasurementToLocalDB(){
-    Long measurementRowId  = repository.insertMeasurement(this.measurement);
-    Log.i("NDBOY", "Measurement" + measurement.getDescription() + "inserted successfully with ID: " + measurementRowId);
-    //TODO
-    saveMeasurementEntriesToLocalDB(measurementRowId);
+    public void saveNewMeasurementToLocalDB(){
+        try {
+
+            Long measurementRowId  = repository.insertMeasurement(this.measurement, this.measureEntries.getValue());
+        } catch (Exception e){
+            Log.i("NDBOY", "error while saving measurement: " + e);
+        }
     }
 
     //This method is called by the saveMeasurementToLocalDB method.
     //It saves the measurementEntries list when the user is done with measurement entries.
     private void saveMeasurementEntriesToLocalDB(Long measurementId){
-        for (MeasureEntry me: this.measureEntries){
-            me.setMeasurementId(measurementId);
-            repository.insertMeasureEntry(me);
-        }
 
-        Log.i("NDBOY", this.measureEntries.size() +  " Measurement entries inserted successfully"); //TODO: For delete
+
     }
 
     //This method takes the clothing style/categories selected by the user as input.
@@ -181,11 +181,10 @@ public class NewMeasurementViewModel extends AndroidViewModel {
             measureEntry.setLength(0F); //TODO: Modify from DB to default to zero (0)
             newMeasureEntries.add(measureEntry);
         }
-        this.measureEntries = newMeasureEntries;
-        Log.i("NDBOY", "Measure Entry list count: " + this.measureEntries.size());
+        this.measureEntries.setValue(newMeasureEntries);
+        Log.i("NDBOY", "Measure Entry list count: " + this.measureEntries.getValue().size());
 
     }
-
 
     private void initializeClothingStylesTree(){
         //TODO: Work with professional designers to build this  Tree to salutary standard

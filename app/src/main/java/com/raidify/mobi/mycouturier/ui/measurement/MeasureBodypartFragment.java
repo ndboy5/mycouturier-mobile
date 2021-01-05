@@ -1,5 +1,8 @@
 package com.raidify.mobi.mycouturier.ui.measurement;
 
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -7,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,26 +24,28 @@ import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.raidify.mobi.mycouturier.R;
 import com.raidify.mobi.mycouturier.ROOMDB.model.MeasureEntry;
+import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
 import com.raidify.mobi.mycouturier.adapter.MeasureEntryRecyclerAdapter;
+import com.raidify.mobi.mycouturier.adapter.MeasurementRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MeasureBodypartFragment extends Fragment implements View.OnClickListener {
+public class MeasureBodypartFragment extends Fragment implements View.OnClickListener, LifecycleOwner {
 
     private Button saveButton;
-    private List<MeasureEntry> measureEntryList = new ArrayList<>();
+//    private MutableLiveData<List<MeasureEntry>> measureEntryList = new MutableLiveData<>();
 
     //Declare recycler view items
     private RecyclerView recyclerView;
     private MeasureEntryRecyclerAdapter measureEntryRecyclerAdapter;
 
     private NewMeasurementViewModel mViewModel;
-    private int activeBodyPart; //The button Active Button ID;
 
     public static MeasureBodypartFragment newInstance() {
         return new MeasureBodypartFragment();
@@ -58,19 +64,13 @@ public class MeasureBodypartFragment extends Fragment implements View.OnClickLis
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(requireActivity()).get(NewMeasurementViewModel.class);
 
-        //build Measurement Entry List for Recycler View
-        measureEntryList = mViewModel.getMeasureBodyPart(); //TODO: Turn this into an observable
+
+            //build Measurement Entry List for Recycler View
+        mViewModel.getMeasureEntries().observe(getViewLifecycleOwner(), measureEntryListObserver);
 
         //NOTE: The recycler view adapter must only be loaded after generating the measurementEntry from user's selection
         recyclerView = getActivity().findViewById(R.id.measureEntryRecyclerView); //TODO Test the context used
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity())); //TODO: Test the context used here
-
-
-
-        //setup the adapter
-        measureEntryRecyclerAdapter = new MeasureEntryRecyclerAdapter(getActivity(), measureEntryList); //TODO: test the context used here (e.g fragment or getActivity)
-        recyclerView.setAdapter(measureEntryRecyclerAdapter);
 
         //instantiate the views
         saveButton = getView().findViewById(R.id.saveMLBodyBtn);
@@ -79,14 +79,27 @@ public class MeasureBodypartFragment extends Fragment implements View.OnClickLis
         saveButton.setOnClickListener(this);
     }
 
+
+    Observer<List<MeasureEntry>> measureEntryListObserver = new Observer<List<MeasureEntry>>() {
+        @Override
+        public void onChanged(List<MeasureEntry> measureEntryList) {
+            measureEntryRecyclerAdapter = new MeasureEntryRecyclerAdapter(getActivity(),measureEntryList);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerView.setAdapter(measureEntryRecyclerAdapter);
+        }
+    };
+
     @Override
     public void onClick(View view) {
         int buttonId = view.getId();
 
         switch (buttonId) {
             case R.id.saveMLBodyBtn:
-                mViewModel.saveMeasurementToLocalDB();
+                mViewModel.saveNewMeasurementToLocalDB();
+                Measurement measurement = mViewModel.getActiveMeasurement();
                 Log.i("NDBOY", "measurement saved to local DB");
+                Toast.makeText (getContext(), measurement.getId() + ": "+ measurement.getDescription() + " measurement details saved successfully", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.action_measureBodyPartFragment_to_nav_home);
         //TODO: Save to local DB
                 break;
             default:

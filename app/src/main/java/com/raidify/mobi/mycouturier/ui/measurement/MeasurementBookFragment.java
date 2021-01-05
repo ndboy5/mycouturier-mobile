@@ -1,6 +1,8 @@
 package com.raidify.mobi.mycouturier.ui.measurement;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.raidify.mobi.mycouturier.R;
 import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
@@ -24,13 +27,12 @@ import com.raidify.mobi.mycouturier.adapter.MeasurementRecyclerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MeasurementBookFragment extends Fragment {
+public class MeasurementBookFragment extends Fragment implements LifecycleOwner {
 
     private MeasurementBookViewModel mViewModel;
     private RecyclerView measurementRecycleView;
     private MeasurementRecyclerAdapter measurementRecyclerAdapter;
-    private LiveData<List<Measurement>> measurements = new LiveData<List<Measurement>>() {
-    };
+    private Button clearBtn;
 
 
     public static MeasurementBookFragment newInstance() {
@@ -46,21 +48,30 @@ public class MeasurementBookFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MeasurementBookViewModel.class); //TODO: modified this
-        //Load the measurement list
-        mViewModel.updateListFromLocalDB();//TODO: test code
-//        this.measurements = mViewModel.getMeasurementList();
-//        Log.i("NDBOY", "Size: " + this.measurements.getValue().size());
+        mViewModel = new ViewModelProvider(requireActivity()).get(MeasurementBookViewModel.class); //TODO: modified this
+        mViewModel.getMeasurementList().observe(getViewLifecycleOwner(), measurementListObserver);
+        //find the recycler view
+        measurementRecycleView = getView().findViewById(R.id.measurementRecycleView);
+        measurementRecycleView.setHasFixedSize(true);
 
-//        measurementRecycleView = getView().findViewById(R.id.measurementRecycleView);
-//        measurementRecycleView.setHasFixedSize(true);
-//        measurementRecycleView.setLayoutManager(new LinearLayoutManager(getContext())); //TODO: Test the context used here (getActivity)
-//
-//
-//        //setup the adapter
-//        //TODO: An error is returned when the DB is empty. Find a way to handle Nulls in the Adapter too
-//        measurementRecyclerAdapter = new MeasurementRecyclerAdapter(getActivity(), this.measurements); //TODO: test the context used here (e.g fragment or getActivity)
-//        measurementRecycleView.setAdapter(measurementRecyclerAdapter);
+        //TODO: Refactor code . Was used for test purposes
+        clearBtn = getView().findViewById(R.id.clearMeasurementBtn);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mViewModel.clearAllMeasurements();
+            }
+        });
+
     }
+
+    Observer<List<Measurement>> measurementListObserver = new Observer<List<Measurement>>() {
+        @Override
+        public void onChanged(List<Measurement> measurementList) {
+            measurementRecyclerAdapter = new MeasurementRecyclerAdapter(getActivity(),measurementList);
+            measurementRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+            measurementRecycleView.setAdapter(measurementRecyclerAdapter);
+        }
+    };
 
 }

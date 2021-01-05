@@ -16,6 +16,10 @@ public interface MeasureEntryDAO {
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     void insertEntry (MeasureEntry entry);
 
+    //Multiple inserts for new measurement
+    @Insert
+    void insertAll (List<MeasureEntry> measureEntries);
+
     //Retrieves body length entries belonging to a single measurement
     @Query("SELECT * FROM MeasureEntry WHERE measurementId =:measureId")
     List<MeasureEntry> getMeasureEntries(int measureId);

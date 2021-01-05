@@ -79,9 +79,6 @@ public class MeasureEntryRecyclerAdapter extends RecyclerView.Adapter<MeasureEnt
         public void onClick(View view) {
             int pos = getAdapterPosition(); //To get the current adapter position
 
-            Log.i("NDBOY", "clicked the " + measureEntryList.get(pos).getPart() + " body part"); //TODO: for delete
-
-
             Bundle bundle = new Bundle();
             bundle.putInt("adtrPosition", pos);
             //navigate to body part entries and send the adapter position/index as a bundle

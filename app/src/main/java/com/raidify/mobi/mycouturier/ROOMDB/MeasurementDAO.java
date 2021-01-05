@@ -21,6 +21,9 @@ public interface MeasurementDAO {
     @Query("DELETE FROM Measurements WHERE id= :id")
     void deleteMeasurement(int id);
 
+    @Query("DELETE FROM Measurements")
+    void deleteAllMeasurement();
+
     @Query("SELECT * FROM Measurements WHERE id= :id")
     Measurement getMeasurement(int id);
 }

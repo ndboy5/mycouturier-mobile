@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_measureBodyPartFragment_to_lengthEntryFragment"
             app:destination="@id/lengthEntryFragment" />
+        <action
+            android:id="@+id/action_measureBodyPartFragment_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/lengthEntryFragment"
@@ -69,5 +72,18 @@
         android:id="@+id/measurementBookFragment"
         android:name="com.raidify.mobi.mycouturier.ui.measurement.MeasurementBookFragment"
         android:label="measurement_book_fragment"
-        tools:layout="@layout/measurement_book_fragment" />
+        tools:layout="@layout/measurement_book_fragment" >
+        <action
+            android:id="@+id/action_measurementBookFragment_to_measurementSummaryFragment"
+            app:destination="@id/measurementSummaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/measurementSummaryFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.measurement.MeasurementSummaryFragment"
+        android:label="measurement_summary_fragment"
+        tools:layout="@layout/measurement_summary_fragment" >
+        <argument
+            android:name="argMeId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

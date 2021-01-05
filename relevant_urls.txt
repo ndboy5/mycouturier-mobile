@@ -11,13 +11,18 @@
  - https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example/40584425#40584425
  - https://stackoverflow.com/questions/31367599/how-to-update-recyclerview-adapter-data
  - https://suragch.medium.com/updating-data-in-an-android-recyclerview-842e56adbfd8
+ - https://medium.com/@atifmukhtar/recycler-view-with-mvvm-livedata-a1fd062d2280
 
 4. Multithreading and Android ROOM (executors)
  - https://developer.android.com/guide/background/threading
  - https://stackoverflow.com/questions/51937399/returning-data-from-executor-service
+ - https://www.tfzx.net/article/2705486.html ****check this out ****
 
 5. Using Async Tasks for ROOM
  - https://itnext.io/room-persistence-library-using-mutablelivedata-observable-to-update-the-ui-after-a-database-6836d25e8267
+
+6. Architecture
+ - https://developer.android.com/jetpack/guide
  - 
 
 

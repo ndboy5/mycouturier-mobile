@@ -6,6 +6,6 @@ import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
 
 import java.util.List;
 
-public interface RepositoryCallback {
+public interface RepositoryMeasurementCallback {
     void onComplete(List<Measurement> result);
 }

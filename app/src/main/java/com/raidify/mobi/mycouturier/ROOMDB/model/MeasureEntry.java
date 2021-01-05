@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "MeasureEntry")
 public class MeasureEntry {
- @PrimaryKey
+ @PrimaryKey (autoGenerate = true)
  @ColumnInfo(name = "id")
  private int id;
  @ColumnInfo(name = "measurementId")

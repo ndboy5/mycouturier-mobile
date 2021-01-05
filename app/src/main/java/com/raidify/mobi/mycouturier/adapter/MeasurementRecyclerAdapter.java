@@ -10,30 +10,20 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.raidify.mobi.mycouturier.R;
-import com.raidify.mobi.mycouturier.ROOMDB.model.MeasureEntry;
 import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MeasurementRecyclerAdapter extends RecyclerView.Adapter<MeasurementRecyclerAdapter.ViewHolder> {
+public class MeasurementRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private LiveData<List<Measurement>> measurements;
+    private List<Measurement> measurements;
 
-    public MeasurementRecyclerAdapter(Context context, LiveData<List<Measurement>> measurements) {
-
-        if (measurements==null){
-            Log.i("NDBOY", "Measurements list count in recycler adapter is null "); //TODO: For delete
-        } else
-        {
-            Log.i("NDBOY", "Measurements list count in recycler adapter: " + measurements.getValue().size()); //TODO: For delete
-        }
+    public MeasurementRecyclerAdapter(Context context, List<Measurement> measurements) {
 
         this.context = context;
         this.measurements = measurements;
@@ -43,25 +33,28 @@ public class MeasurementRecyclerAdapter extends RecyclerView.Adapter<Measurement
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mentry_body_part_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.measurement_row, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
         // bind the view and the data here
-        Measurement measurements = this.measurements.getValue().get(position); //get the entries one by one from the List
-        holder.description.setText(measurements.getDescription().toString());
-        holder.unit.setText(measurements.getUnitOfMeasure().toString());
-        holder.gender.setText(measurements.getGender().toString());
-        holder.lastUpdateDate.setText(measurements.getLastupdateBy().toString());
 
+        Measurement measurements = this.measurements.get(position); //get the entries one by one from the List
 
+        ViewHolder viewHolder = (ViewHolder) holder;
+
+        viewHolder.description.setText(measurements.getDescription());
+        viewHolder.gender.setText(measurements.getGender());
+        viewHolder.unit.setText(measurements.getUnit());
+//        viewHolder.lastUpdateDate.setText(measurements.getLastupdateBy().toString());  //TODO: Give a null object ref error
     }
 
     @Override
     public int getItemCount() {
-        return this.measurements.getValue().size();
+        return this.measurements.size();
     }
 
     public class  ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -76,7 +69,7 @@ public class MeasurementRecyclerAdapter extends RecyclerView.Adapter<Measurement
             super(itemView);
 
             //Set listeners
-//            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
 
             //Find the textViews on the measure body part row XML file
             description = itemView.findViewById(R.id.descriptionTextView);
@@ -92,16 +85,14 @@ public class MeasurementRecyclerAdapter extends RecyclerView.Adapter<Measurement
         public void onClick(View view) {
             int pos = getAdapterPosition(); //To get the current adapter position
 
-            Log.i("NDBOY", "clicked the " + measurements.getValue().get(pos).getDescription() + " body part"); //TODO: for delete
-
-
             Bundle bundle = new Bundle();
-            bundle.putInt("adtrPosition", pos);
+            bundle.putInt("argMeId", pos); //Note: The row id was used to identify here and not the MeasureID
+
             //navigate to body part entries and send the adapter position/index as a bundle
-            Navigation.findNavController(view).navigate(R.id.action_measureBodyPartFragment_to_lengthEntryFragment, bundle);
+            Navigation.findNavController(view).navigate(R.id.action_measurementBookFragment_to_measurementSummaryFragment, bundle);
 
             //handle delete button in Card TODO: (Not working)
-            if (view.getId()==R.id.deleteBtn) measurements.getValue().remove(pos);
+            if (view.getId()==R.id.deleteBtn) measurements.remove(pos);
         }
     }
 }

@@ -18,7 +18,7 @@ public class Measurement {
     @ColumnInfo(name = "gender")
     private  String gender;
     @ColumnInfo(name = "unit")
-    private String unitOfMeasure;
+    private String unit;
     @ColumnInfo(name = "isFavourite")
     private boolean  isFavourite;
     @ColumnInfo(name = "lastUpdateBy")
@@ -49,12 +49,12 @@ public class Measurement {
         this.gender = gender;
     }
 
-    public String getUnitOfMeasure() {
-        return unitOfMeasure;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setUnitOfMeasure(String unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
+    public void setUnit(String unitOfMeasure) {
+        this.unit = unitOfMeasure;
     }
 
     public boolean isFavourite() {
