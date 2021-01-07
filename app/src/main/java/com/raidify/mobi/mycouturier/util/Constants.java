@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Constants {
-    public static final String baseUrl = "";
+    public static final String baseUrl = "http://192.168.43.163:5000/api/v1";
     //Measurement Body parts
     public static final String  BUST = "Bust";
     public static final String  HIGHBUST = "High-Bust";

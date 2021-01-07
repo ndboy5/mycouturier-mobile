@@ -86,4 +86,13 @@
             android:name="argMeId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.login.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 </navigation>

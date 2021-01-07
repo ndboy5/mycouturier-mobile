@@ -2,12 +2,22 @@ package com.raidify.mobi.mycouturier.ROOMDB;
 
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.raidify.mobi.mycouturier.ROOMDB.model.MeasureEntry;
 import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
+import com.raidify.mobi.mycouturier.api_server.APIServerSingleton;
+import com.raidify.mobi.mycouturier.util.Constants;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,19 +34,79 @@ public class Repository {
     //Single measurement
     private Measurement measurement;
     private Long measurementId; //To hold return value after insertion into DB
+    private Context context;
 
-    //TODO: Develop search feature for measurements saved on Device or cloud
-    private MutableLiveData<List<Measurement>> searchResults = new MutableLiveData<>();
+
 
     //Note: Application level scope used to get new Database Instance
     public Repository(Application application){
+        this.context = application;
         //get DB instance
-        MCDatabase mcDatabase = MCDatabase.getDatabase(application);
+        MCDatabase mcDatabase = MCDatabase.getDatabase(context);
         //initialize the DAOs
         measurementDAO = mcDatabase.measurementDAO();
         measureEntryDAO =  mcDatabase.measureEntryDAO();
         //initialize the list arrays
         measureEntries = new ArrayList<>();
+    }
+
+    public void makeAPIPOSTTestCall(){
+        String url = Constants.baseUrl + "/auth/login";  //TODO: For tests. Identify unprotected urls
+
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("phone", "07022222222");
+            postData.put("password", "jerryforlife");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //NOTE: Volley responds on the main thread.
+                        //  textView.setText("Response: " + response.toString());
+                        Log.i("NDBOY", "JSON" + response.toString());
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
+                    }
+                });
+
+
+        APIServerSingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
+    }
+
+    public void makeAPIGETTestCall(){
+        String url = "https://run.mocky.io/v3/6f35ea97-8f46-44ad-ac55-b1ddafe5aa48";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //NOTE: Volley responds on the main thread.
+                      //  textView.setText("Response: " + response.toString());
+                        Log.i("NDBOY", "JSON" + response.toString());
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
+                    }
+                });
+
+
+        APIServerSingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
     }
 
     //Return a list of all measurement in the Local DB
@@ -56,8 +126,9 @@ public class Repository {
                 }
             }
         });
-//        Log.i("NDBOY", "The real measurement size is: " + this.allMeasurements.getValue().size());
-         //TODO: The allMeasurements returns a null value. This data gets lost here
+        //TODO: Remove. used for test only
+       // makeAPIGETTestCall();
+        makeAPIPOSTTestCall();
     }
     // This method is called by the new measurement View model and used to create a new measurement
     public Long insertMeasurement(Measurement measurement, List<MeasureEntry> measureEntries){

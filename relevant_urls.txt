@@ -23,6 +23,11 @@
 
 6. Architecture
  - https://developer.android.com/jetpack/guide
+
+7. Android Volley 
+ - https://www.geeksforgeeks.org/volley-library-in-android/
+ - ***One way NOT to do it*** https://medium.com/@rohan.surve5/how-to-fetch-json-data-using-volley-and-put-it-to-recyclerview-and-store-on-room-database-for-4387280f35dc
  - 
+
 
 

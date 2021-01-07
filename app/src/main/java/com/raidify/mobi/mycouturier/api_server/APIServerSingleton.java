@@ -37,6 +37,7 @@ public class APIServerSingleton {
 
     //private constructor for singleton instance
     private APIServerSingleton(Context context) {
+        //NOTE: It is recommended that the singleton class be instantiated with application context (not activity)
         ctx = context;
         requestQueue = getRequestQueue();
 
