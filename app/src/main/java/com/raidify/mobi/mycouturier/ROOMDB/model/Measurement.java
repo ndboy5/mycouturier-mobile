@@ -21,9 +21,14 @@ public class Measurement {
     private String unit;
     @ColumnInfo(name = "isFavourite")
     private boolean  isFavourite;
+    private String _id; //API Server's rowid
+    private String createdBy;
     @ColumnInfo(name = "lastUpdateBy")
     private String  lastupdateBy;
-
+    private String lastUpdateDate;
+    private String lastSyncTime;
+    private String createdAt;
+    private boolean isDirty;
 
     //Getters and setters for Measurement attributes
     public int getId() {
@@ -73,4 +78,51 @@ public class Measurement {
         this.lastupdateBy = lastupdateBy;
     }
 
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(String lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public String getLastSyncTime() {
+        return lastSyncTime;
+    }
+
+    public void setLastSyncTime(String lastSyncTime) {
+        this.lastSyncTime = lastSyncTime;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public boolean isDirty() {
+        return isDirty;
+    }
+
+    public void setDirty(boolean dirty) {
+        isDirty = dirty;
+    }
 }

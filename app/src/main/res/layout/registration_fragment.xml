@@ -2,63 +2,66 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout5"
+    android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.LoginFragment" >
+    tools:context=".ui.auth.RegistrationFragment" >
 
     <EditText
-        android:id="@+id/nameEditTxt"
+        android:id="@+id/passwordEditTextr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="enter email or phone"
-        android:inputType="textPersonName"
+        android:hint="Password"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditTextr" />
+
+    <EditText
+        android:id="@+id/emailEditTextr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:ems="10"
+        android:hint="email address"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/pwdEditTxt"
+        android:id="@+id/phoneEditTextr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
-        android:inputType="textPassword"
+        android:hint="Phone (Optional)"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEditTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextr" />
 
-    <Button
-        android:id="@+id/loginButton"
+    <CheckBox
+        android:id="@+id/designerCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Login"
+        android:layout_marginTop="30dp"
+        android:text="Designer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pwdEditTxt" />
-
-    <TextView
-        android:id="@+id/attemptText"
-        android:layout_width="337dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="10dp"
-        android:text="5 attempts remaining. You may login using Facebook or Twitter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneEditTextr" />
 
     <Button
-        android:id="@+id/signUpbutton"
+        android:id="@+id/signupBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:text="Sign-up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/attemptText" />
+        app:layout_constraintTop_toBottomOf="@+id/designerCheckBox" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

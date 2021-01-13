@@ -11,6 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.raidify.mobi.mycouturier.ROOMDB.model.Account;
 import com.raidify.mobi.mycouturier.ROOMDB.model.MeasureEntry;
 import com.raidify.mobi.mycouturier.ROOMDB.model.Measurement;
 import com.raidify.mobi.mycouturier.api_server.APIServerSingleton;
@@ -24,6 +25,7 @@ import java.util.List;
 
 
 public class Repository {
+
     //Declare DAOs
     private MeasurementDAO measurementDAO;
     private MeasureEntryDAO measureEntryDAO;
@@ -50,39 +52,7 @@ public class Repository {
         measureEntries = new ArrayList<>();
     }
 
-    public void makeAPIPOSTTestCall(){
-        String url = Constants.baseUrl + "/auth/login";  //TODO: For tests. Identify unprotected urls
 
-        JSONObject postData = new JSONObject();
-        try {
-            postData.put("phone", "07022222222");
-            postData.put("password", "jerryforlife");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        //NOTE: Volley responds on the main thread.
-                        //  textView.setText("Response: " + response.toString());
-                        Log.i("NDBOY", "JSON" + response.toString());
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
-
-                    }
-                });
-
-
-        APIServerSingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
-    }
 
     public void makeAPIGETTestCall(){
         String url = "https://run.mocky.io/v3/6f35ea97-8f46-44ad-ac55-b1ddafe5aa48";
@@ -127,8 +97,7 @@ public class Repository {
             }
         });
         //TODO: Remove. used for test only
-       // makeAPIGETTestCall();
-        makeAPIPOSTTestCall();
+     //  makeAPIGETTestCall();
     }
     // This method is called by the new measurement View model and used to create a new measurement
     public Long insertMeasurement(Measurement measurement, List<MeasureEntry> measureEntries){
@@ -186,6 +155,7 @@ public class Repository {
             measureEntryDAO.deleteMeasurement(measurementID);
         });
     }
+
 
     //TODO: Get measurement records for self (belonging to self)
     //TODO: Get favourite measurements

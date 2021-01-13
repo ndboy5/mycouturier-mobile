@@ -26,9 +26,13 @@ public class Constants {
     public static final String  OUTSEAM = "Outseam";
     public static final String  ANKLE = "Ankle";
 
-    public static final String SHIRT = "Shirt";
+    public static final String SHORTSVSHIRT = "Short Sleeve Shirt";
+    public static final String LONGSVSHIRT = "Long Sleeve Shirt";
     public static final String TROUSER = "Trouser";
-    public static final String FULLBODY = "Full-Body";
+    public static final String FULLBODY = "Full-Body/Suit";
+    public static final String SKIRT = "Skirts";
+    public static final String HAT = "Hats";
+
 
 
 

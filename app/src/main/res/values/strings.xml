@@ -25,7 +25,10 @@
     <string name="error_empty_string">Please enter a valid size</string>
     <string name="description">Measurement Description</string>
     <string name="desc_helper_text">E.g Dr. Jenny Ajayi</string>
-    <string name="fullbody">Full Body</string>
-    <string name="shirt">Shirts</string>
+    <string name="fullbody">Full Body/Suits/Gowns</string>
+    <string name="longSVshirt">Long Sleeve Shirts</string>
+    <string name="shortSVShirt">Short Sleeve Shirts</string>
+    <string name="hat">Hats</string>
+    <string name="skirt">Skirts</string>
     <string name="trouser">trouser</string>
 </resources>

@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButton;
 import com.raidify.mobi.mycouturier.R;
+import com.raidify.mobi.mycouturier.util.SessionManager;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -22,6 +23,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -32,14 +35,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public  void onActivityCreated(@Nullable Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
-        //Get the buttons
+     //Get the buttons
      MaterialButton measureBtn = getView().findViewById(R.id.measurementsBtn);
-     MaterialButton ordersBtn = getView().findViewById(R.id.ordersBtn);
      MaterialButton recordBookBtn = getView().findViewById(R.id.recordBookBtn);
 
      // set Listeners for each button
      measureBtn.setOnClickListener(this);
-     ordersBtn.setOnClickListener(this);
      recordBookBtn.setOnClickListener(this);
 
  }
@@ -48,9 +49,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.measurementsBtn:
-                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_measurement);
-                break;
-            case R.id.ordersBtn:
+                if(homeViewModel.isLoggedIn()){
+                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_measurement);}
+                else {
+                    Navigation.findNavController(view).navigate(R.id.action_nav_home_to_loginFragment);
+                }
                 break;
             case R.id.recordBookBtn:
                 Navigation.findNavController(view).navigate(R.id.action_nav_home_to_measurementBookFragment);
@@ -59,4 +62,5 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
 }

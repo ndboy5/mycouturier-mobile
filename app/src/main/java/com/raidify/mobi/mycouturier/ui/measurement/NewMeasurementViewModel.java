@@ -35,13 +35,17 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
+import static com.raidify.mobi.mycouturier.util.Constants.ANKLE;
 import static com.raidify.mobi.mycouturier.util.Constants.BUST;
 import static com.raidify.mobi.mycouturier.util.Constants.CENTERBACK;
 import static com.raidify.mobi.mycouturier.util.Constants.FULLBODY;
+import static com.raidify.mobi.mycouturier.util.Constants.HAT;
 import static com.raidify.mobi.mycouturier.util.Constants.HIGHBUST;
 import static com.raidify.mobi.mycouturier.util.Constants.INSEAM;
+import static com.raidify.mobi.mycouturier.util.Constants.LONGSVSHIRT;
 import static com.raidify.mobi.mycouturier.util.Constants.OUTSEAM;
-import static com.raidify.mobi.mycouturier.util.Constants.SHIRT;
+import static com.raidify.mobi.mycouturier.util.Constants.SHORTSVSHIRT;
+import static com.raidify.mobi.mycouturier.util.Constants.SKIRT;
 import static com.raidify.mobi.mycouturier.util.Constants.TROUSER;
 import static com.raidify.mobi.mycouturier.util.Constants.WAIST;
 
@@ -49,8 +53,8 @@ public class NewMeasurementViewModel extends AndroidViewModel {
     private final Measurement measurement = new Measurement();
 
     private Repository repository;
-    private Set<String> selectedBodyPartList = new HashSet<String>();
-    private MutableLiveData<List<MeasureEntry>> measureEntries = new MutableLiveData<>();
+    private Set<String> selectedBodyPartList;
+    private MutableLiveData<List<MeasureEntry>> measureEntries;
 
 
     //TODO: Initialize it with a nice initial capacity and loading factor for production
@@ -60,6 +64,8 @@ public class NewMeasurementViewModel extends AndroidViewModel {
     public NewMeasurementViewModel (Application application) {
         super(application);
         repository = new Repository(application);
+        selectedBodyPartList = new HashSet<>();
+        measureEntries = new MutableLiveData<>();
 
         //Initialize the clothing Style Tree.
         initializeClothingStylesTree();
@@ -136,6 +142,8 @@ public class NewMeasurementViewModel extends AndroidViewModel {
     //This method takes the clothing style/categories selected by the user as input.
     //It then finds the corresponding body parts from the Tree and updates the measure Part List afterwards
     public void generateBodyPartList(List<Integer> selectedClothingStyles){
+        if (this.selectedBodyPartList!=null) this.selectedBodyPartList.clear(); //Clear the list;
+
         String styleKey = "";
         for (int styleId: selectedClothingStyles ){
             //update Body part HashMap
@@ -144,13 +152,25 @@ public class NewMeasurementViewModel extends AndroidViewModel {
                     styleKey = FULLBODY;
                     Log.i("NDBOY", "full body");
                     break;
-                case R.id.shirtChip:
-                    styleKey = SHIRT;
-                    Log.i("NDBOY", "shirt");
+                case R.id.LnshirtChip:
+                    styleKey = LONGSVSHIRT;
+                    Log.i("NDBOY", "Long Sleeve shirt");
                     break;
                 case R.id.trouserChip:
                     styleKey = TROUSER;
                     Log.i("NDBOY", "trouser");
+                    break;
+                case R.id.STSVShirtChip:
+                    styleKey = SHORTSVSHIRT;
+                    Log.i("NDBOY", "short sleeve shirt");
+                    break;
+                case R.id.hatChip:
+                    styleKey = HAT;
+                    Log.i("NDBOY", "Hat");
+                    break;
+                case R.id.skirtChip:
+                    styleKey = SKIRT;
+                    Log.i("NDBOY", "skirt");
                     break;
                 default:
                     //TODO:
@@ -174,6 +194,8 @@ public class NewMeasurementViewModel extends AndroidViewModel {
      * The use of LIST as against a SET or MAP for the Recycler View object is advisable
      */
     private void generateMeasureEntryList(){
+      if (this.measureEntries.getValue()!=null) this.measureEntries.getValue().clear(); //clear list;
+
         List<MeasureEntry> newMeasureEntries= new ArrayList<>();
         for (String part: selectedBodyPartList){
             MeasureEntry measureEntry = new MeasureEntry();
@@ -188,13 +210,20 @@ public class NewMeasurementViewModel extends AndroidViewModel {
 
     private void initializeClothingStylesTree(){
         //TODO: Work with professional designers to build this  Tree to salutary standard
-        final String[]  shirtBodyParts = new String[]{BUST, HIGHBUST, CENTERBACK};
-        final String[]  fullBodyParts = new String[]{BUST, HIGHBUST, CENTERBACK, WAIST, OUTSEAM, INSEAM};
-        final String[]  trouserBodyParts = new String[]{WAIST, OUTSEAM, INSEAM};
+        final String[]  shortSleeve = new String[]{BUST, HIGHBUST, CENTERBACK, ANKLE};
+        final String[]  fullBodyParts = new String[]{BUST, HIGHBUST, CENTERBACK, WAIST, OUTSEAM, INSEAM, Constants.CROTCHLENGHT};
+        final String[]  trouser = new String[]{WAIST, OUTSEAM, INSEAM};
+        final String[]  hatBodyParts = new String[]{Constants.HEAD};
+        final String[]  skirt = new String[]{WAIST, INSEAM, ANKLE};
+        final String[]  longSleeveShirt = new String[]{WAIST, OUTSEAM, INSEAM, };
+
 //        Add clothing style and corresponding body parts to tree
-        clothingStyleTree.put(SHIRT , shirtBodyParts );
-        clothingStyleTree.put(TROUSER, trouserBodyParts);
+        clothingStyleTree.put(SHORTSVSHIRT, shortSleeve );
+        clothingStyleTree.put(LONGSVSHIRT, longSleeveShirt );
+        clothingStyleTree.put(TROUSER, trouser);
         clothingStyleTree.put(FULLBODY, fullBodyParts);
+        clothingStyleTree.put(SKIRT, skirt);
+        clothingStyleTree.put(HAT, hatBodyParts);
     }
 
 }

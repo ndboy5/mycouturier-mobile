@@ -10,11 +10,11 @@
 <!-- Chip group for the clothing style/Category e.g shits, trousers etc -->
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/clothingStyle"
-        android:layout_width="380dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="390dp"
+        android:layout_height="265dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,19 +23,13 @@
 
         <!-- Chips can be declared here, or added dynamically. -->
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/fullBodyChip"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fullbody" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/shirtChip"
+            android:id="@+id/LnshirtChip"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/shirt" />
+            android:text="@string/longSVshirt" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/trouserChip"
@@ -44,20 +38,51 @@
             android:layout_height="wrap_content"
             android:text="@string/trouser" />
 
+        <com.google.android.material.chip.Chip
+            android:id="@+id/hatChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hat" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/STSVShirtChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shortSVShirt" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/skirtChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/skirt" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/fullBodyChip"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fullbody" />
+
     </com.google.android.material.chip.ChipGroup>
 
     <!-- Toggle group for the measurement Units -->
+
+    <!-- Toggle Group for Gender -->
+
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/unitsOfMeasurement"
         android:layout_width="296dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
         app:selectionRequired="true"
         app:singleSelection="true">
 
@@ -89,13 +114,11 @@
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
-    <!-- Toggle Group for Gender -->
-
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/toggleButton"
-        android:layout_width="181dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/unitsOfMeasurement"
@@ -127,23 +150,22 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:textColor="@color/WHITE"
+        android:layout_marginTop="10dp"
         android:text="@string/nextBtn"
+        android:textColor="@color/WHITE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/clothingStyle" />
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/description"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="363dp"
-        android:layout_height="93dp"
+        android:layout_width="368dp"
+        android:layout_height="85dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:inputType="textAutoCorrect"
         app:helperText="@string/desc_helper_text"
@@ -151,7 +173,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clothingStyle">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descriptionText"

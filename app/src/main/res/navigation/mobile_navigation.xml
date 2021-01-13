@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_nav_home_to_measurementBookFragment"
             app:destination="@id/measurementBookFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -88,11 +91,23 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.raidify.mobi.mycouturier.ui.login.LoginFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.auth.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment" >
         <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
             android:id="@+id/action_loginFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.raidify.mobi.mycouturier.ui.auth.RegistrationFragment"
+        android:label="registration_fragment"
+        tools:layout="@layout/registration_fragment" >
+        <action
+            android:id="@+id/action_registrationFragment_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
 </navigation>
