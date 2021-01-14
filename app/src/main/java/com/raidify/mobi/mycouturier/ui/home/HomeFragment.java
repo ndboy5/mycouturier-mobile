@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,10 +40,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
      //Get the buttons
      MaterialButton measureBtn = getView().findViewById(R.id.measurementsBtn);
      MaterialButton recordBookBtn = getView().findViewById(R.id.recordBookBtn);
+     Button logoutButton = getView().findViewById(R.id.logoutButton);
 
      // set Listeners for each button
      measureBtn.setOnClickListener(this);
      recordBookBtn.setOnClickListener(this);
+     logoutButton.setOnClickListener(this);
 
  }
 
@@ -57,6 +61,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.recordBookBtn:
                 Navigation.findNavController(view).navigate(R.id.action_nav_home_to_measurementBookFragment);
+                break;
+
+            case  R.id.logoutButton:
+                homeViewModel.logoutAccount();
+                Toast.makeText(getContext(), "User logged out", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

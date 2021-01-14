@@ -1,5 +1,8 @@
 package com.raidify.mobi.mycouturier.ROOMDB;
-
+/**
+ * This is the repository class which handles data Storage to the local SQLite DB (uses ROOM) and communicates with the remote API Server
+ * The repository is used within the View model classes in line with the MVVC architecture
+ */
 
 import android.app.Application;
 import android.content.Context;
@@ -101,6 +104,9 @@ public class Repository {
     }
     // This method is called by the new measurement View model and used to create a new measurement
     public Long insertMeasurement(Measurement measurement, List<MeasureEntry> measureEntries){
+
+
+
         MCDatabase.databaseWriteExecutor.execute(() -> {
            this.measurementId = measurementDAO.insertMeasurement(measurement);
            //update the measureEntry list with new MeasureId and save on the Local DB

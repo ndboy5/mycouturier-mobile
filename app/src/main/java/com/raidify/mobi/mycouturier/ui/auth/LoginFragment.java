@@ -128,7 +128,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         APIServerSingleton.getInstance(requireActivity()).addToRequestQueue(jsonObjectRequest);
 }
                 break;
-            case R.id.signupBtn:
+            case R.id.signUpbutton:
                 //Go to registration fragment
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment);
                 break;

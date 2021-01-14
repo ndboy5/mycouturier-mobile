@@ -24,4 +24,8 @@ SessionManager sessionManager;
 
     }
 
+    public void logoutAccount(){
+        sessionManager.logoutUser();
+    }
+
 }
