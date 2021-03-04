@@ -2,7 +2,6 @@ package com.raidify.mobi.mycouturier.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.util.HashMap;
 
@@ -24,15 +23,12 @@ private static final String PREF_NAME = "AcctPref";
 
     /** All Shared Preferences Keys*/
     private static final String IS_LOGIN = "isLoggedIn";
-
-    /** User name (make variable public to access from outside)*/
     public static final String KEY_NAME = "name";
-
-    /** Email address (make variable public to access from outside)*/
     public static final String KEY_EMAIL = "email";
     public  static final String  KEY_ROLE = "role";
     public static final String KEY_ID = "id";
     public static final String KEY_TOKEN = "token";
+    public static final String KEY_LOGINTYPE = "loginType";
 
 /** Constructor*/
 public SessionManager(Context context){
@@ -42,19 +38,17 @@ public SessionManager(Context context){
     editor = pref.edit();
 }
 
-    public void createLoginSession(String id, String name, String email, String role, String token){
+    public void createLoginSession(String id, String name, String email, String role, String token, String loginType){
 
 // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
-
-// Storing name in pref
+        //Store other preference keys
         editor.putString(KEY_NAME, name);
-
-// Storing email in pref
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_ID, id);
         editor.putString(KEY_ROLE, role);
         editor.putString(KEY_TOKEN, token);
+        editor.putString(KEY_LOGINTYPE, loginType);
 
 // commit changes
         editor.commit();

@@ -31,4 +31,8 @@
     <string name="hat">Hats</string>
     <string name="skirt">Skirts</string>
     <string name="trouser">trouser</string>
+
+    <string name="facebook_app_id">307345803938096</string>
+    <string name="fb_login_protocol_scheme">fb307345803938096</string>
+
 </resources>

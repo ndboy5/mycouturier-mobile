@@ -1,14 +1,6 @@
 package com.raidify.mobi.mycouturier.ui.auth;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +9,22 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.raidify.mobi.mycouturier.R;
+import com.raidify.mobi.mycouturier.util.Constants;
 
 public class RegistrationFragment extends Fragment implements View.OnClickListener {
 
     private RegistrationViewModel mViewModel;
     private EditText emailEditText;
     private EditText passwordEditText;
+    private EditText fNameEditText;
+    private EditText sNameEditText;
     private EditText phoneEditText;
     private CheckBox designerCheckBox;
     private Button signUpBtn;
@@ -49,6 +50,7 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
         passwordEditText = getView().findViewById(R.id.passwordEditTextr);
         phoneEditText = getView().findViewById(R.id.phoneEditTextr);
         designerCheckBox = getView().findViewById(R.id.designerCheckBox);
+        //TODO: find edit texts of name and surname from layout
         signUpBtn = getView().findViewById(R.id.signupBtn);
 
         signUpBtn.setOnClickListener(this);
@@ -71,8 +73,8 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
                 role = "designer"; //TODO: prevent use of string literals
             }
             //set Account details
-            mViewModel.setAccountDetails(email, password, phone, role);
-           if (mViewModel.createAccount())
+            mViewModel.setAccountDetails(email, password, phone, role, "jerry", "jerry", Constants.DEF_USER); //TODO: modify to use real names from Layout file
+           mViewModel.createDefaultAccount("/auth/register");
                Navigation.findNavController(view).navigate(R.id.action_registrationFragment_to_nav_home);
         }
 

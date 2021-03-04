@@ -1,13 +1,5 @@
 package com.raidify.mobi.mycouturier.util;
 
-import com.raidify.mobi.mycouturier.R;
-
-import java.sql.Array;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Constants {
     public static final String baseUrl = "http://192.168.43.163:5000/api/v1";
     //Measurement Body parts
@@ -32,6 +24,13 @@ public class Constants {
     public static final String FULLBODY = "Full-Body/Suit";
     public static final String SKIRT = "Skirts";
     public static final String HAT = "Hats";
+
+    public static final String DEF_USER = "DEF";
+    public static final String FB_USER =  "FB";
+    // User roles
+    public static final String DESIGNER_ROLE = "designer";
+    public static final String ADMIN_ROLE = "admin";
+    public static final String CUSTOMER_ROLE = "customer";
 
 
 
