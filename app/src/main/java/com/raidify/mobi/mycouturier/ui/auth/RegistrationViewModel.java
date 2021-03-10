@@ -34,6 +34,7 @@ public class RegistrationViewModel extends AndroidViewModel {
         account.setPhone(phoneNo);
         account.setFirstName(firstName);
         account.setLastName(lastName);
+        Log.i("NDBOY", "Account details for " + firstName + " updated");
     }
 
     public boolean createDefaultAccount(String urlString){
@@ -47,7 +48,8 @@ public class RegistrationViewModel extends AndroidViewModel {
                     @Override
                     public void onResponse(JSONObject response) {
                         //Save response to repo here
-                        //NOTE: Volley responds on the main thread
+                        //NOTE: Volley responds on the main thread.
+                        //TODO: Test Facebook login on HTTPS connection to server. Clear text HTTP traffic was disabled after facebook login SDK was implemented.
                         try {
                             //Create session only if account was created successfully
                             if (response.getBoolean("success")){
@@ -67,8 +69,8 @@ public class RegistrationViewModel extends AndroidViewModel {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error here
-
+                        // TODO: Handle error here.
+                        Log.i("NDBOY", "It got to volley error at least..." + error );
                     }
                 });
 
@@ -76,7 +78,7 @@ public class RegistrationViewModel extends AndroidViewModel {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(0,DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //Make asynchronous call to server to retrieve account token and status
         APIServerSingleton.getInstance(getApplication()).addToRequestQueue(jsonObjectRequest);
-        return true; //TODO: develop logic
+        return sessionManager.isLogin(); //TODO: develop logic
     }
 
     public void facebookLoginToServer(String urlString){

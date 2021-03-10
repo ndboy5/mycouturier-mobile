@@ -67,6 +67,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 homeViewModel.logoutAccount();
                 Toast.makeText(getContext(), "User logged out", Toast.LENGTH_SHORT).show();
                 break;
+
             default:
                 break;
         }

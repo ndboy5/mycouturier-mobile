@@ -51,7 +51,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private TextView attemptMsgText;
     private int counter = 5;
     
-    // Facebook registration
+    // Facebook login
     private LoginButton fbLoginBtn;
     //Facebook callback manager
     CallbackManager callbackManager;
@@ -124,14 +124,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         try {
                             //SettAccountDetails for Facebook login
                             //TODO: Some people use phone numbers to register on FB. This should be handled client side so it doesn't throw errors on server side
-
                             //Note: Password and phone numbers are null
-                            mViewModel.setAccountDetails(object.getString("email"), null, null, Constants.CUSTOMER_ROLE,
-                                    object.getString("first_name"), object.getString("last_name") , Constants.FB_USER);
-                            mViewModel.facebookLoginToServer("/auth/login/fb");
+                            mViewModel.setAccountDetails(object.getString("email"), null,
+                                    null, Constants.CUSTOMER_ROLE, object.getString("first_name"),
+                                    object.getString("last_name") , Constants.FB_USER);
+
+                            mViewModel.facebookLoginToServer("/auth/login/facebook");
                             //TODO: check for login status and navigate to home page from here
+                            Log.i("NDBOY", "Login Status on Phone is: " + sessionManager.isLogin());
+                            // Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_nav_home);
                         } catch (JSONException e) {
-                            e.printStackTrace();
+
+                            e.printStackTrace(); //TODO: handle Network Errors here
                         }
                         //TODO: Send FB Login data to server and create session
 
