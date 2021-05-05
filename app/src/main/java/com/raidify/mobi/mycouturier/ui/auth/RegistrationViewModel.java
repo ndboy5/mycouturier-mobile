@@ -36,6 +36,10 @@ public class RegistrationViewModel extends AndroidViewModel {
         account.setLastName(lastName);
     }
 
+    public Account getAccount(){
+        return this.account;
+    }
+
     public boolean createDefaultAccount(String urlString){
 
         //Url string for post call to API Server

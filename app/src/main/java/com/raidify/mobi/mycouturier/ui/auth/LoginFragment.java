@@ -129,7 +129,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             mViewModel.setAccountDetails(object.getString("email"), null, null, Constants.CUSTOMER_ROLE,
                                     object.getString("first_name"), object.getString("last_name") , Constants.FB_USER);
                             mViewModel.facebookLoginToServer("/auth/login/fb");
+
+                            //create local Login session on mobile device
+                            createLoginSession(mViewModel.getAccount().getId(), mViewModel.getAccount().getFirstName(),
+                                    mViewModel.getAccount().getEmail(), mViewModel.getAccount().getRole(), mViewModel.getAccount().getToken(), Constants.FB_USER);
                             //TODO: check for login status and navigate to home page from here
+
+                            //Try navigation to home fragment
+                            navigateToHome();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -143,6 +150,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         //TODO: Collecting any info other than email would require facebook app review (See: https://developers.facebook.com/docs/permissions/reference#e )
         graphRequest.setParameters(bundle);
         graphRequest.executeAsync();
+
     }
 
     AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
@@ -193,9 +201,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                                         try {
                                             //Create session only if account exists on server
                                             if (response.getBoolean("success")){
-                                            sessionManager.createLoginSession(response.getString("id"), response.getString("name"),
-                                                    email, response.getString("role"), response.getString("token"), Constants.DEF_USER);
-                                            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_nav_home);
+                                                createLoginSession(response.getString("id"), response.getString("name"),
+                                                        email, response.getString("role"), response.getString("token"), Constants.DEF_USER);
+
+                                            //Navigate from login page to home
+                                         navigateToHome();
                                             Log.i("NDBOY", "JSON Status: " + response.getBoolean("success"));
                                             } else{
                                                 // Decrement counter if credentials are not valid on server
@@ -226,6 +236,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
         }
 
+    }
+
+    //This method is called is either the Facebook login (OAuth) or the In-built login is successful
+    private void createLoginSession(String id, String name, String email, String role, String token, String userType){
+
+        sessionManager.createLoginSession(id, name, email, role, token, userType);
+    }
+
+    //This method is used to navigate to the home fragment after login
+    private void navigateToHome(){
+        Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_nav_home);
     }
 
 
