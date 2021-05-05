@@ -1,7 +1,7 @@
 package com.raidify.mobi.mycouturier.util;
 
 public class Constants {
-    public static final String baseUrl = "http://172.20.10.1:5000/api/v1";
+    public static final String baseUrl = "https://www.mytailorfit.com/api/v1";
     //Measurement Body parts
     public static final String  BUST = "Bust";
     public static final String  HIGHBUST = "High-Bust";
