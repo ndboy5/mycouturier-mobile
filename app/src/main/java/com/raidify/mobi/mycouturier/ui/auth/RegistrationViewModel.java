@@ -36,6 +36,11 @@ public class RegistrationViewModel extends AndroidViewModel {
         account.setLastName(lastName);
         Log.i("NDBOY", "Account details for " + firstName + " updated");
     }
+    
+    
+    public Account getAccount(){
+        return this.account;
+    }
 
     public boolean createDefaultAccount(String urlString){
 
