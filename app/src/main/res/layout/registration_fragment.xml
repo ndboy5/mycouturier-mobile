@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.auth.RegistrationFragment" >
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/designerCheckBox" />
+
     <EditText
         android:id="@+id/passwordEditTextr"
         android:layout_width="wrap_content"
@@ -60,7 +71,8 @@
         android:layout_marginTop="60dp"
         android:text="Sign-up"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/designerCheckBox" />
+        app:layout_constraintTop_toBottomOf="@+id/login_button2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

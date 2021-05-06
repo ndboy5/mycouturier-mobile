@@ -20,5 +20,9 @@
             android:id="@+id/nav_measurement"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/measurementsBtn" />
+        <item
+            android:id="@+id/loginFragment"
+            android:icon="@drawable/com_facebook_button_icon"
+            android:title="@string/logout" />
     </group>
 </menu>

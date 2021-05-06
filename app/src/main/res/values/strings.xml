@@ -34,5 +34,10 @@
 
     <string name="facebook_app_id">307345803938096</string>
     <string name="fb_login_protocol_scheme">fb307345803938096</string>
+    <string name="login">Log In</string>
+    <string name="signUp">Sign Up</string>
+    <string name="logout">Log Out</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

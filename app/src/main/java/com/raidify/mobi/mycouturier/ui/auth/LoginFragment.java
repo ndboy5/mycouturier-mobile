@@ -51,7 +51,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private TextView attemptMsgText;
     private int counter = 5;
     
-    // Facebook registration
+    // Facebook login
     private LoginButton fbLoginBtn;
     //Facebook callback manager
     CallbackManager callbackManager;
@@ -78,10 +78,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         //Register a callback for FB login
         callbackManager = CallbackManager.Factory.create();
 
-        fbLoginBtn = (LoginButton) getView().findViewById(R.id.login_button);
+        fbLoginBtn = (LoginButton) getView().findViewById(R.id.FBlogin_button);
         fbLoginBtn.setPermissions(Arrays.asList(EMAIL));
         // If you are using in a fragment, call loginButton.setFragment(this);
         fbLoginBtn.setFragment(this);
+        fbLoginBtn.setOnClickListener(this);
         // Callback registration
         fbLoginBtn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -124,21 +125,25 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         try {
                             //SettAccountDetails for Facebook login
                             //TODO: Some people use phone numbers to register on FB. This should be handled client side so it doesn't throw errors on server side
-
                             //Note: Password and phone numbers are null
-                            mViewModel.setAccountDetails(object.getString("email"), null, null, Constants.CUSTOMER_ROLE,
-                                    object.getString("first_name"), object.getString("last_name") , Constants.FB_USER);
-                            mViewModel.facebookLoginToServer("/auth/login/fb");
+                            mViewModel.setAccountDetails(object.getString("email"), null,
+                                    null, Constants.CUSTOMER_ROLE, object.getString("first_name"),
+                                    object.getString("last_name") , Constants.FB_USER);
 
-                            //create local Login session on mobile device
+                            mViewModel.facebookLoginToServer("/auth/login/facebook");
+                            
+                              //create local Login session on mobile device
                             createLoginSession(mViewModel.getAccount().getId(), mViewModel.getAccount().getFirstName(),
                                     mViewModel.getAccount().getEmail(), mViewModel.getAccount().getRole(), mViewModel.getAccount().getToken(), Constants.FB_USER);
+                                    
                             //TODO: check for login status and navigate to home page from here
-
-                            //Try navigation to home fragment
+                            Log.i("NDBOY", "Login Status on Phone is: " + sessionManager.isLogin());
+                            //navigate to home fragment
                             navigateToHome();
+                            
                         } catch (JSONException e) {
-                            e.printStackTrace();
+
+                            e.printStackTrace(); //TODO: handle Network Errors here
                         }
                         //TODO: Send FB Login data to server and create session
 
@@ -150,7 +155,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         //TODO: Collecting any info other than email would require facebook app review (See: https://developers.facebook.com/docs/permissions/reference#e )
         graphRequest.setParameters(bundle);
         graphRequest.executeAsync();
-
     }
 
     AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
@@ -201,12 +205,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                                         try {
                                             //Create session only if account exists on server
                                             if (response.getBoolean("success")){
-                                                createLoginSession(response.getString("id"), response.getString("name"),
-                                                        email, response.getString("role"), response.getString("token"), Constants.DEF_USER);
+                                         createLoginSession(response.getString("id"), response.getString("name"),
+                                            email, response.getString("role"), response.getString("token"), Constants.DEF_USER);
 
                                             //Navigate from login page to home
-                                         navigateToHome();
+                                             navigateToHome();
                                             Log.i("NDBOY", "JSON Status: " + response.getBoolean("success"));
+                                            
                                             } else{
                                                 // Decrement counter if credentials are not valid on server
                                                 counter--;
@@ -234,11 +239,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 //Go to registration fragment
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment);
                 break;
+            //To logout the user on device when he clicks on the FB login button to logout
+            case R.id.FBlogin_button:
+                    if(sessionManager.isLogin()){
+                        // LoginManager.getInstance().logOut();
+                        sessionManager.logoutUser();
+                    }
+                break;
         }
 
     }
 
-    //This method is called is either the Facebook login (OAuth) or the In-built login is successful
+ //This method is called is either the Facebook login (OAuth) or the In-built login is successful
     private void createLoginSession(String id, String name, String email, String role, String token, String userType){
 
         sessionManager.createLoginSession(id, name, email, role, token, userType);
